@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="StackMachine">
+      <UniqueIdentifier>{4eb2f0c5-9632-4b35-a1e6-7fb7e0ace401}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -25,16 +28,19 @@
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="AddressType.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>StackMachine</Filter>
     </ClInclude>
     <ClInclude Include="Order.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>StackMachine</Filter>
+    </ClInclude>
+    <ClInclude Include="AdressArgs.h">
+      <Filter>StackMachine</Filter>
     </ClInclude>
     <ClInclude Include="StackMachine.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>StackMachine</Filter>
     </ClInclude>
-    <ClInclude Include="AdressData.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="LD.h">
+      <Filter>StackMachine</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

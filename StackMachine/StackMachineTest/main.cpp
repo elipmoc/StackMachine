@@ -7,7 +7,7 @@ void main() {
 	Adr adr2(l);
 	int x = 4;
 	X x1(x);
-	OrderBase* ld =MakeLD<int>::Make( MakeAdressData(adr1, x1, adr2));
+	OrderBase* ld =MakeLD<int>::Make( MakeAdressArgs(adr1, x1, adr2));
 	ld->Do();
 	std::cout << *(int*)(adr1.value+4)<<std::endl<<*(int*)adr2.value;
 }

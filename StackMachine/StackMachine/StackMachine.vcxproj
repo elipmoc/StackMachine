@@ -135,7 +135,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AddressType.h" />
-    <ClInclude Include="AdressData.h" />
+    <ClInclude Include="AdressArgs.h" />
+    <ClInclude Include="LD.h" />
     <ClInclude Include="Order.h" />
     <ClInclude Include="StackMachine.h" />
     <ClInclude Include="stdafx.h" />
