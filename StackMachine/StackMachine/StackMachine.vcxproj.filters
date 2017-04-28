@@ -16,6 +16,9 @@
     <Filter Include="StackMachine">
       <UniqueIdentifier>{4eb2f0c5-9632-4b35-a1e6-7fb7e0ace401}</UniqueIdentifier>
     </Filter>
+    <Filter Include="StackMachine\Order">
+      <UniqueIdentifier>{1321f3c3-38bf-4db7-a445-79f6bb0aada3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -27,9 +30,6 @@
     <ClInclude Include="targetver.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="AddressType.h">
-      <Filter>StackMachine</Filter>
-    </ClInclude>
     <ClInclude Include="Order.h">
       <Filter>StackMachine</Filter>
     </ClInclude>
@@ -40,7 +40,19 @@
       <Filter>StackMachine</Filter>
     </ClInclude>
     <ClInclude Include="LD.h">
+      <Filter>StackMachine\Order</Filter>
+    </ClInclude>
+    <ClInclude Include="Print.h">
+      <Filter>StackMachine\Order</Filter>
+    </ClInclude>
+    <ClInclude Include="OrderVector.h">
       <Filter>StackMachine</Filter>
+    </ClInclude>
+    <ClInclude Include="JMP.h">
+      <Filter>StackMachine\Order</Filter>
+    </ClInclude>
+    <ClInclude Include="ADD.h">
+      <Filter>StackMachine\Order</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
