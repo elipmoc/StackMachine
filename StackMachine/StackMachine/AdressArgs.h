@@ -1,6 +1,4 @@
 #pragma once
-#include "AddressType.h"
-
 //命令に渡すアドレス構造体定義
 template<int N=0>
 struct  AdressArgs{};

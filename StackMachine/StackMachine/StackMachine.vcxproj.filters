@@ -54,6 +54,15 @@
     <ClInclude Include="ADD.h">
       <Filter>StackMachine\Order</Filter>
     </ClInclude>
+    <ClInclude Include="CPA.h">
+      <Filter>StackMachine\Order</Filter>
+    </ClInclude>
+    <ClInclude Include="JMPB.h">
+      <Filter>StackMachine\Order</Filter>
+    </ClInclude>
+    <ClInclude Include="INC.h">
+      <Filter>StackMachine\Order</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">

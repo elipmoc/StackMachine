@@ -136,7 +136,10 @@
   <ItemGroup>
     <ClInclude Include="ADD.h" />
     <ClInclude Include="AdressArgs.h" />
+    <ClInclude Include="CPA.h" />
+    <ClInclude Include="INC.h" />
     <ClInclude Include="JMP.h" />
+    <ClInclude Include="JMPB.h" />
     <ClInclude Include="LD.h" />
     <ClInclude Include="Order.h" />
     <ClInclude Include="OrderVector.h" />

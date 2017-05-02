@@ -76,9 +76,10 @@ public:
 	template<typename T>
 	void DC(T t, std::string labelName) {
 		if (label.count(labelName) == 1)throw "ラベルが再定義されました";
-		*(T*)(&Memory[usedIndex]) = t;
+		T* tp=new (&Memory[usedIndex]) T;
+		*tp= t;
 		label[labelName] = &Memory[usedIndex];
-		usedIndex += sizeof(T);
+		usedIndex += sizeof(*tp);
 	};
 	//DS命令。(即値,ラベル名)
 	void DS(int size, std::string labelName) {
@@ -102,3 +103,6 @@ public:
 #include "LD.h"
 #include "JMP.h"
 #include "ADD.h"
+#include "CPA.h"
+#include "JMPB.h"
+#include "INC.h"
