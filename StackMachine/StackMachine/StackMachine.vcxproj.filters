@@ -63,6 +63,18 @@
     <ClInclude Include="INC.h">
       <Filter>StackMachine\Order</Filter>
     </ClInclude>
+    <ClInclude Include="Ref.h">
+      <Filter>StackMachine\Order</Filter>
+    </ClInclude>
+    <ClInclude Include="DRef.h">
+      <Filter>StackMachine\Order</Filter>
+    </ClInclude>
+    <ClInclude Include="LDR.h">
+      <Filter>StackMachine\Order</Filter>
+    </ClInclude>
+    <ClInclude Include="CAST.h">
+      <Filter>StackMachine\Order</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">

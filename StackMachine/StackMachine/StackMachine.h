@@ -106,3 +106,7 @@ public:
 #include "CPA.h"
 #include "JMPB.h"
 #include "INC.h"
+#include "Ref.h"
+#include "DRef.h"
+#include "LDR.h"
+#include "CAST.h"
