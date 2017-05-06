@@ -89,7 +89,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>C:\Users\Owner\Source\Repos\StackMachine\StackMachine\StackMachine;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Owner\Source\Repos\StackMachine\StackMachine\StackMachine;C:\Users\Owner\Source\Repos\StackMachine\StackMachine\StackMachineBuilder;C:\boost_1_62_0\boostLib\include\boost-1_62;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -120,7 +120,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>C:\Users\Owner\Source\Repos\StackMachine\StackMachine\StackMachine;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Owner\Source\Repos\StackMachine\StackMachine\StackMachine;C:\Users\Owner\Source\Repos\StackMachine\StackMachine\StackMachineBuilder;C:\boost_1_62_0\boostLib\include\boost-1_62;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

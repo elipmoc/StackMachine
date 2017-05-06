@@ -33,10 +33,8 @@ public:
 	ADD(AD ad) :ad(ad) {}
 };
 
-template<typename Type>
-struct MakeADD {
-	template<typename AD>
-	auto operator()(AD ad) {
-		return new ADD<Type, AD>(ad);
-	}
-};
+template<typename Type,typename AD>
+auto MakeADD(Type, AD ad)
+{
+	return new ADD<Type, AD>(ad);
+}

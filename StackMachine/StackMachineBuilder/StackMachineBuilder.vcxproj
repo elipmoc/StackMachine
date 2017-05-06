@@ -19,9 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{D645ED3D-22DA-4E4E-BD83-281147707030}</ProjectGuid>
+    <ProjectGuid>{D4768E77-DCAF-4606-8A6B-96EEF5483F73}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>StackMachine</RootNamespace>
+    <RootNamespace>StackMachineBuilder</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -77,6 +77,8 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>C:\boost_1_62_0\boostLib\include\boost-1_62;C:\Users\Owner\Source\Repos\StackMachine\StackMachine\StackMachine;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -105,6 +107,8 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>C:\boost_1_62_0\boostLib\include\boost-1_62;C:\Users\Owner\Source\Repos\StackMachine\StackMachine\StackMachine;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -134,24 +138,11 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ADD.h" />
-    <ClInclude Include="AdressArgs.h" />
-    <ClInclude Include="CAST.h" />
-    <ClInclude Include="CPA.h" />
-    <ClInclude Include="DRef.h" />
-    <ClInclude Include="INC.h" />
-    <ClInclude Include="JMP.h" />
-    <ClInclude Include="JMPB.h" />
-    <ClInclude Include="LD.h" />
-    <ClInclude Include="LDR.h" />
-    <ClInclude Include="Order.h" />
-    <ClInclude Include="OrderVector.h" />
-    <ClInclude Include="Print.h" />
-    <ClInclude Include="Ref.h" />
-    <ClInclude Include="StackMachine.h" />
+    <ClInclude Include="BindOrder.h" />
+    <ClInclude Include="CustomVariant.h" />
+    <ClInclude Include="StackMachineBuilder.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
-    <ClInclude Include="type.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">

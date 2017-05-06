@@ -13,9 +13,9 @@ private:
 		*sm.GetPR()= *(char**)(ad.adr1)-4;
 	};
 	template<>
-	void Do2<Args<6>>()
+	void Do2<Args<1>>()
 	{
-		*sm.GetPR() = *(char**)(ad.adr1+*ad.x1)-4;
+		*sm.GetPR() = *(char**)(ad.adr1+*(int*)ad.adr2)-4;
 	};
 public:
 	virtual void Do() {
@@ -24,10 +24,7 @@ public:
 	JMP(AD ad,StackMachine& sm) :ad(ad),sm(sm) {}
 };
 
-
-struct MakeJMP {
-	template<typename AD>
-	auto operator()(AD ad,StackMachine& sm) {
-		return new JMP<AD>(ad,sm);
-	}
-};
+template<typename AD>
+auto MakeJMP(AD ad, StackMachine& sm) {
+	return new JMP<AD>(ad, sm);
+}

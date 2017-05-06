@@ -9,12 +9,12 @@ private:
 	template<>
 	void Do2<Args<5>>()
 	{
-		std::cout<<*(type*)ad.adr1<<std::endl;
+		std::cout<<*(type*)ad.adr1;
 	};
 	template<>
-	void Do2<Args<6>>()
+	void Do2<Args<1>>()
 	{
-		std::cout << *(type*)(ad.adr1 + *ad.x1) << std::cout;
+		std::cout << *(type*)(ad.adr1 + *(int*)ad.adr2);
 	};
 public:
 	virtual void Do() {
@@ -23,10 +23,7 @@ public:
 	PRINT(AD ad) :ad(ad) {}
 };
 
-template<typename Type>
-struct MakePRINT {
-	template<typename AD>
-	auto operator()(AD ad) {
-		return new PRINT<Type, AD>(ad);
-	}
-};
+template<typename Type,typename AD>
+auto MakePRINT(Type, AD ad) {
+	return new PRINT<Type, AD>(ad);
+}

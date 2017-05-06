@@ -75,6 +75,9 @@
     <ClInclude Include="CAST.h">
       <Filter>StackMachine\Order</Filter>
     </ClInclude>
+    <ClInclude Include="type.h">
+      <Filter>StackMachine</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">

@@ -12,6 +12,7 @@ struct  AdressArgs<1>
 		this->adr1 = (char*)adr1;
 		this->adr2 = (char*)adr2;
 	}
+	AdressArgs(){}
 };
 template<>
 struct  AdressArgs<2>
@@ -36,6 +37,8 @@ struct  AdressArgs<3>
 		this->adr2 = (char*)adr2;
 		this->x2 = (int*)x2;
 	}
+	AdressArgs() {}
+
 };
 template<>
 struct  AdressArgs<4>
@@ -50,6 +53,8 @@ struct  AdressArgs<4>
 		this->x1 = (int*)x1;
 		this->x2 = (int*)x2;
 	}
+	AdressArgs() {}
+
 };
 template<>
 struct  AdressArgs<5>
@@ -58,6 +63,8 @@ struct  AdressArgs<5>
 	AdressArgs(void* adr1) {
 		this->adr1 = (char*)adr1;
 	}
+	AdressArgs() {}
+
 };
 template<>
 struct  AdressArgs<6>
@@ -68,6 +75,7 @@ struct  AdressArgs<6>
 		this->adr1 = (char*)adr1;
 		this->x1 = (int*)x1;
 	}
+
 };
 
 

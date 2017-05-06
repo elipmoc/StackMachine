@@ -33,10 +33,8 @@ public:
 	CAST(AD ad) :ad(ad) {}
 };
 
-template<typename Type1,typename Type2>
-struct MakeCAST {
-	template<typename AD>
-	auto operator()(AD ad) {
-		return new CAST<Type1,Type2, AD>(ad);
-	}
-};
+template<typename Type1,typename Type2, typename AD>
+auto MakeCAST(Type1, Type2, AD ad) {
+	return new CAST<Type1, Type2, AD>(ad);
+}
+

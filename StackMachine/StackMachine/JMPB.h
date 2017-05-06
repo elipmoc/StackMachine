@@ -37,10 +37,7 @@ public:
 	};
 	JMPB(AD ad,StackMachine& sm) :ad(ad),sm(sm) {}
 };
-
-struct MakeJMPB {
-	template<typename AD>
-	auto operator()(AD ad,StackMachine& sm) {
-		return new JMPB< AD>(ad,sm);
-	}
-};
+template<typename AD>
+auto MakeJMPB(AD ad, StackMachine& sm) {
+	return new JMPB< AD>(ad, sm);
+}

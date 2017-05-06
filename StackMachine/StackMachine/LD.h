@@ -33,11 +33,8 @@ public:
 	LD(AD ad):ad(ad){}
 };
 
-template<typename Type>
-struct MakeLD {
-	template<typename AD>
-	auto operator()(AD ad) {
-		return new LD<Type, AD>(ad);
-	}
-};
+template<typename Type,typename AD>
+auto MakeLD(Type,AD ad) {
+	return new LD<Type, AD>(ad);
+}
 

@@ -34,10 +34,8 @@ public:
 	CPA(AD ad, StackMachine& sm) :ad(ad), sm(sm) {}
 };
 
-template<typename type>
-struct MakeCPA {
-	template<typename AD>
-	auto operator()(AD ad, StackMachine& sm) {
-		return new CPA<type,AD>(ad, sm);
-	}
-};
+template<typename Type, typename AD>
+auto MakeCPA(Type, AD ad,StackMachine& sm)
+{
+	return new CPA<Type, AD>(ad,sm);
+}
