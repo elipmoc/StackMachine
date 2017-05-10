@@ -18,6 +18,26 @@ struct BindDCV {
 	}
 };
 
+struct BindDCVS {
+	StackMachine* sm;
+	std::string label;
+	BindDCVS(StackMachine* sm, std::string label) :sm(sm), label(label) {}
+	void operator ()(std::string str)const {
+		std::vector<char> strv;
+		for each (auto c in str)
+		{
+			strv.push_back(c);
+		}
+		sm->DCV(strv, label);
+	}
+	static void _Make(StackMachine* sm, std::string label, std::string str) {
+		BindDCVS(sm, label)(str);
+	}
+	static auto Make(StackMachine& sm) {
+		return phx::bind(&BindDCVS::_Make, &sm, spt::_1, spt::_2);
+	}
+};
+
 struct BindLabelAdr
 {
 	static void* _Make(StackMachine* sm, std::string label) {
@@ -43,6 +63,20 @@ struct BindValueAdr :boost::static_visitor<void*>
 		return phx::bind(&BindValueAdr::_Make, &sm, spt::_1);
 	}
 };
+struct BindStringAdr :boost::static_visitor<void*>
+{
+	StackMachine* sm;
+	BindStringAdr(StackMachine* sm) :sm(sm) {}
+	void* operator ()(std::vector<char>& v)const {
+		return sm->ValueLabel(v);
+	}
+	static void* _Make(StackMachine* sm, std::vector<char>& v) {
+		return BindStringAdr(sm)(v);
+	}
+	static auto Make(StackMachine& sm) {
+		return phx::bind(&BindStringAdr::_Make, &sm, spt::_1);
+	}
+};
 
 template<typename type>
 struct BindPRINT :boost::static_visitor<OrderBase*> {
@@ -64,6 +98,28 @@ struct BindPRINT :boost::static_visitor<OrderBase*> {
 	}
 	static auto Make() {
 		return phx::bind(&BindPRINT::_Make,spt::_1);
+	}
+};
+
+struct BindSPRINT :boost::static_visitor<OrderBase*> {
+	template<class Args>
+	OrderBase* operator ()(Args)const {
+		return nullptr;
+	}
+	template<>
+	OrderBase* operator ()(Args<5> args)const {
+		return MakeSPRINT( args);
+	}
+	template<>
+	OrderBase* operator ()(Args<1> args)const {
+		return MakeSPRINT(args);
+	}
+
+	static OrderBase* _Make(VarArgs& va) {
+		return boost::apply_visitor(BindSPRINT(), va);
+	}
+	static auto Make() {
+		return phx::bind(&BindSPRINT::_Make, spt::_1);
 	}
 };
 
@@ -122,31 +178,82 @@ struct BindADD :boost::static_visitor<OrderBase*> {
 };
 
 template<typename type>
-struct BindCPA :boost::static_visitor<OrderBase*> {
-	StackMachine* sm;
-	BindCPA(StackMachine* sm):sm(sm){}
+struct BindINC :boost::static_visitor<OrderBase*> {
 	template<class Args>
 	OrderBase* operator ()(Args)const {
 		return nullptr;
 	}
 	template<>
 	OrderBase* operator ()(Args<1> args)const {
-		return MakeCPA(type(), args,*sm);
+		return MakeINC(type(), args);
+	}
+	template<>
+	OrderBase* operator ()(Args<5> args)const {
+		return MakeINC(type(), args);
+	}
+
+	static OrderBase* _Make(VarArgs& va) {
+		return boost::apply_visitor(BindINC(), va);
+	}
+	static auto Make() {
+		return phx::bind(&BindINC::_Make, spt::_1);
+	}
+};
+
+template<typename type>
+struct BindCPAEQ :boost::static_visitor<OrderBase*> {
+	StackMachine* sm;
+	BindCPAEQ(StackMachine* sm):sm(sm){}
+	template<class Args>
+	OrderBase* operator ()(Args)const {
+		return nullptr;
+	}
+	template<>
+	OrderBase* operator ()(Args<1> args)const {
+		return MakeCPAEQ(type(), args,*sm);
 	}
 	template<>
 	OrderBase* operator ()(Args<3> args)const {
-		return MakeCPA(type(), args,*sm);
+		return MakeCPAEQ(type(), args,*sm);
 	}
 	template<>
 	OrderBase* operator ()(Args<4> args)const {
-		return MakeCPA(type(), args,*sm);
+		return MakeCPAEQ(type(), args,*sm);
 	}
 
 	static OrderBase* _Make(StackMachine* sm,VarArgs& va) {
-		return boost::apply_visitor(BindCPA(sm), va);
+		return boost::apply_visitor(BindCPAEQ(sm), va);
 	}
 	static auto Make(StackMachine& sm) {
-		return phx::bind(&BindCPA::_Make,&sm ,spt::_1);
+		return phx::bind(&BindCPAEQ::_Make,&sm ,spt::_1);
+	}
+};
+template<typename type>
+struct BindCPANEQ :boost::static_visitor<OrderBase*> {
+	StackMachine* sm;
+	BindCPANEQ(StackMachine* sm) :sm(sm) {}
+	template<class Args>
+	OrderBase* operator ()(Args)const {
+		return nullptr;
+	}
+	template<>
+	OrderBase* operator ()(Args<1> args)const {
+		return MakeCPANEQ(type(), args, *sm);
+	}
+	template<>
+	OrderBase* operator ()(Args<3> args)const {
+		return MakeCPANEQ(type(), args, *sm);
+	}
+	template<>
+	OrderBase* operator ()(Args<4> args)const {
+		return MakeCPANEQ(type(), args, *sm);
+	}
+
+	static OrderBase* _Make(StackMachine* sm, VarArgs& va) {
+		return boost::apply_visitor(BindCPANEQ(sm), va);
+	}
+	static auto Make(StackMachine& sm) {
+		return phx::bind(&BindCPANEQ::_Make, &sm, spt::_1);
 	}
 };
 

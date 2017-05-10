@@ -1,20 +1,19 @@
 #include "StackMachineBuilder.h"
+#include <fstream>
 void main() {
+	std::string path;
+	std::string codeStr;
+	std::string buf;
+	path = "test.txt";
+	//std::cin >> path;
+	std::ifstream ifs(path);
+	while (ifs&&std::getline(ifs, buf)) {
+		codeStr += buf;
+	}
 	Compile(
-		"A idc -4;"
-		"V idc 1,1,4,5,1,4,8,1,0,19;"
-		"ENDSTR cdc 'E','N','D';"
-		"START iadd A 4;"
-		"iprint V A;"
-		"icpa A 36;"
-		"jmpb END ax;"
-		"jmp START;"
-		"END cprint '\n';"
-		"cprint ENDSTR;"
-		"cprint ENDSTR 1;"
-		"cprint ENDSTR 2;"
-		"cprint '\n';"
+		codeStr
 	);
+	std::cin >> path;
 	/*///スタックマシン用意
 	StackMachine sm;
 	///定数確保///

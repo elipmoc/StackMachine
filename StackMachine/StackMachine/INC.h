@@ -11,6 +11,11 @@ private:
 		(*(type*)ad.adr1)++;
 	};
 	template<>
+	void Do2<Args<1>>()
+	{
+		(*(type*)(ad.adr1 + *ad.adr2))++;
+	};
+	template<>
 	void Do2<Args<6>>()
 	{
 		(*(type*)(ad.adr1 + *ad.x1))++;
@@ -22,10 +27,7 @@ public:
 	INC(AD ad) :ad(ad) {}
 };
 
-template<typename Type>
-struct MakeINC {
-	template<typename AD>
-	auto operator()(AD ad) {
-		return new INC<Type, AD>(ad);
-	}
+template<typename Type,typename AD>
+auto MakeINC(Type, AD ad) {
+	return new INC<Type, AD>(ad);
 };

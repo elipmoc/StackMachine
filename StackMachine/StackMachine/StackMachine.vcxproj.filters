@@ -54,9 +54,6 @@
     <ClInclude Include="ADD.h">
       <Filter>StackMachine\Order</Filter>
     </ClInclude>
-    <ClInclude Include="CPA.h">
-      <Filter>StackMachine\Order</Filter>
-    </ClInclude>
     <ClInclude Include="JMPB.h">
       <Filter>StackMachine\Order</Filter>
     </ClInclude>
@@ -77,6 +74,15 @@
     </ClInclude>
     <ClInclude Include="type.h">
       <Filter>StackMachine</Filter>
+    </ClInclude>
+    <ClInclude Include="SPRINT.h">
+      <Filter>StackMachine\Order</Filter>
+    </ClInclude>
+    <ClInclude Include="CPANEQ.h">
+      <Filter>StackMachine\Order</Filter>
+    </ClInclude>
+    <ClInclude Include="CPAEQ.h">
+      <Filter>StackMachine\Order</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

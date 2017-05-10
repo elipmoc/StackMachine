@@ -25,8 +25,10 @@ public:
 	void Run() { sm.SetOrderVector(ov); sm.Run(); }
 	Script() :Script::base_type(Code) {
 		std::vector<int> v = {1,2,3};
+		using boost::phoenix::ref;
 		using spt::qi::eps;
 		using spt::qi::lit;
+		using spt::qi::_1;
 		using spt::qi::_val;
 		using spt::qi::double_;
 		using spt::qi::bool_;
@@ -34,6 +36,7 @@ public:
 		using spt::qi::alpha;
 		using spt::qi::as_string;
 		using spt::ascii::char_;
+		spt::qi::standard_wide::char_type wchar_;
 		using spt::qi::real_parser;
 		using spt::qi::strict_real_policies;
 		real_parser<double, strict_real_policies<double>> strict_double;
@@ -42,16 +45,23 @@ public:
 				(DC >> lit(';')) 
 				| 
 				(-(Label[AddOrderLabel()]>>lit(' '))>>Order[AddOrder()] >> lit(';'))
+				|
+				(Comment)
 			);
-		Char = lit('\'') >>char_>> lit('\'');
+		NullChar = lit("\\0")[_val = '\0'];
+		EndLineChar = lit("\\n")[_val='\n'];
+		Char = lit('\'') >>NullChar|EndLineChar|char_>> lit('\'');
 		Value = strict_double | int_|  Char|bool_;
-		ValueAdr = Value[_val = BindValueAdr::Make(sm)];
+		ValueAdr = Value[_val = BindValueAdr::Make(sm)] | String[_val=BindStringAdr::Make(sm)];
 		DC =
 			(Label >> lit(' ') >> lit("idc") >> lit(' ') >> int_%',')[BindDCV::Make<int>(sm)] |
 			(Label >> lit(' ') >> lit("ddc") >> lit(' ') >> double_%',')[BindDCV::Make<double>(sm)] |
 			(Label >> lit(' ') >> lit("bdc") >> lit(' ') >> bool_%',')[BindDCV::Make<bool>(sm)] |
-			(Label >> lit(' ') >> lit("cdc") >> lit(' ') >> Char%',')[BindDCV::Make<char>(sm)];
+			(Label >> lit(' ') >> lit("cdc") >> lit(' ') >> Char%',')[BindDCV::Make<char>(sm)]|
+			(Label >> lit(' ') >> lit("cdc") >> lit(' ') >> String)[BindDCV::Make<char>(sm)];
 		Label =as_string[(+(char_('A', 'Z')))];
+		String= lit('"')>>(+((NullChar|EndLineChar|char_|wchar_)-'"'))>> lit('"');
+		Comment = lit("/*") >>*((char_|wchar_)-"*/")>> lit("*/");
 		LabelAdr = Label[_val = BindLabelAdr::Make(sm)];
 		Register =
 			lit("ax")[_val = sm.GetAX()] |
@@ -69,14 +79,15 @@ public:
 		Args4 = (Adr >> lit(' ') >> Adr >> lit(' ') >> Adr >> lit(' ') >> Adr)[_val = BindArgs4::Make()];
 		Args5 = (Adr)[_val=BindArgs5::Make()];
 		Args = (Args1 | Args3 | Args4 | Args5);
-		Order = (PRINT|ADD|LD|JMP|JMPB|CPA);
+		Order = (PRINT|ADD|LD|JMP|JMPB|CPAEQ|CPANEQ|INC);
 		JMP = lit("jmp") >> lit(' ') >> Args[_val = BindJMP::Make(sm)];
 		JMPB = lit("jmpb") >> lit(' ') >> Args[_val = BindJMPB::Make(sm)];
 		PRINT = 
 			(lit("iprint") >> lit(' ') >> Args[_val = BindPRINT<int>::Make()])|
 			(lit("dprint") >> lit(' ') >> Args[_val = BindPRINT<double>::Make()])|
 			(lit("bprint") >> lit(' ') >> Args[_val = BindPRINT<bool>::Make()])|
-			(lit("cprint") >> lit(' ') >> Args[_val = BindPRINT<char>::Make()]);
+			(lit("cprint") >> lit(' ') >> Args[_val = BindPRINT<char>::Make()])|
+		    (lit("sprint") >> lit(' ') >> Args[_val = BindSPRINT::Make()]);
 		LD=
 			(lit("ild") >> lit(' ') >> Args[_val = BindLD<int>::Make()]) |
 			(lit("dld") >> lit(' ') >> Args[_val = BindLD<double>::Make()]) |
@@ -87,11 +98,21 @@ public:
 			(lit("dadd") >> lit(' ') >> Args[_val = BindADD<double>::Make()]) |
 			(lit("badd") >> lit(' ') >> Args[_val = BindADD<bool>::Make()]) |
 			(lit("cadd") >> lit(' ') >> Args[_val = BindADD<char>::Make()]);
-		CPA =
-			(lit("icpa") >> lit(' ') >> Args[_val = BindCPA<int>::Make(sm)]) |
-			(lit("dcpa") >> lit(' ') >> Args[_val = BindCPA<double>::Make(sm)]) |
-			(lit("bcpa") >> lit(' ') >> Args[_val = BindCPA<bool>::Make(sm)]) |
-			(lit("ccpa") >> lit(' ') >> Args[_val = BindCPA<char>::Make(sm)]);
+		INC =
+			(lit("iinc") >> lit(' ') >> Args[_val = BindINC<int>::Make()]) |
+			(lit("dinc") >> lit(' ') >> Args[_val = BindINC<double>::Make()]) |
+			(lit("binc") >> lit(' ') >> Args[_val = BindINC<bool>::Make()]) |
+			(lit("cinc") >> lit(' ') >> Args[_val = BindINC<char>::Make()]);
+		CPAEQ =
+			(lit("icpaeq") >> lit(' ') >> Args[_val = BindCPAEQ<int>::Make(sm)]) |
+			(lit("dcpaeq") >> lit(' ') >> Args[_val = BindCPAEQ<double>::Make(sm)]) |
+			(lit("bcpaeq") >> lit(' ') >> Args[_val = BindCPAEQ<bool>::Make(sm)]) |
+			(lit("ccpaeq") >> lit(' ') >> Args[_val = BindCPAEQ<char>::Make(sm)]);
+		CPANEQ =
+			(lit("icpaneq") >> lit(' ') >> Args[_val = BindCPANEQ<int>::Make(sm)]) |
+			(lit("dcpaneq") >> lit(' ') >> Args[_val = BindCPANEQ<double>::Make(sm)]) |
+			(lit("bcpaneq") >> lit(' ') >> Args[_val = BindCPANEQ<bool>::Make(sm)]) |
+			(lit("ccpaneq") >> lit(' ') >> Args[_val = BindCPANEQ<char>::Make(sm)]);
 	}
 	//scriptコード全体をまとめる文法
 	spt::qi::rule<Iterator>Code;
@@ -103,8 +124,12 @@ public:
 	spt::qi::rule<Iterator, OrderBase*>LD;
 	//ADD命令
 	spt::qi::rule<Iterator, OrderBase*>ADD;
-	//CPA命令
-	spt::qi::rule<Iterator, OrderBase*>CPA;
+	//INC命令
+	spt::qi::rule<Iterator, OrderBase*>INC;
+	//CPAEQ命令
+	spt::qi::rule<Iterator, OrderBase*>CPAEQ;
+	//CPANEQ命令
+	spt::qi::rule<Iterator, OrderBase*>CPANEQ;
 	//JMP命令
 	spt::qi::rule<Iterator, OrderBase*>JMP;
 	//JMPB命令
@@ -131,6 +156,14 @@ public:
 	spt::qi::rule<Iterator, VarArgs()>Args;
 	//char形式
 	spt::qi::rule<Iterator,char()>Char;
+	//null文字
+	spt::qi::rule<Iterator, char()>NullChar;
+	//改行文字
+	spt::qi::rule<Iterator, char()>EndLineChar;
+	//文字列
+	spt::qi::rule<Iterator, std::vector<char>>String;
+	//コメント
+	spt::qi::rule<Iterator>Comment;
 	//即値
 	spt::qi::rule<Iterator, VarValue>Value;
 	//即値アドレス

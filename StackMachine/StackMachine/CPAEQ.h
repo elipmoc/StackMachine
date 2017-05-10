@@ -1,6 +1,6 @@
 #pragma once
 template<typename type,typename AD>
-struct CPA :OrderBase
+struct CPAEQ :OrderBase
 {
 private:
 	AD ad;
@@ -31,11 +31,11 @@ public:
 	virtual void Do() {
 		Do2<AD>();
 	};
-	CPA(AD ad, StackMachine& sm) :ad(ad), sm(sm) {}
+	CPAEQ(AD ad, StackMachine& sm) :ad(ad), sm(sm) {}
 };
 
 template<typename Type, typename AD>
-auto MakeCPA(Type, AD ad,StackMachine& sm)
+auto MakeCPAEQ(Type, AD ad,StackMachine& sm)
 {
-	return new CPA<Type, AD>(ad,sm);
+	return new CPAEQ<Type, AD>(ad,sm);
 }

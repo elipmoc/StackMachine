@@ -1,0 +1,25 @@
+/*
+このプログラムは1から100までの和を表示します。
+*/
+
+/*カウンタ変数定義*/
+CNT idc 0;
+
+/*和を入れる変数*/
+WA idc 0;
+
+/*カウンタインクリメント*/
+START iinc CNT;
+
+/*和にカウンタを足す*/
+iadd WA CNT;
+
+/*CNT==100をaxに代入*/
+icpaneq CNT 100;
+
+/*ax==trueならSTARTへジャンプ*/
+jmpb START ax;
+
+/*結果表示*/
+sprint "1から100までの和＝\0";
+iprint WA;

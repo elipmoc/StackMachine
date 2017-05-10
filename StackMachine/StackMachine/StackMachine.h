@@ -3,7 +3,6 @@
 #include "type.h"
 #include "Order.h"
 #include <iostream>
-#include "Print.h"
 #include <map>
 #include <string>
 #include <vector>
@@ -19,6 +18,7 @@ class StackMachine {
 	std::map<double, void*> dlabel;
 	std::map<bool, void*> blabel;
 	std::map<char, void*> clabel;
+	std::map<std::string, void*> slabel;
 	//メモリ領域
 	char* Memory = new char[65536];
 	//Memoryの空き領域の先頭アドレスを指すインデックス
@@ -112,6 +112,22 @@ public:
 		usedIndex += sizeof(char);
 		return clabel[t];
 	};
+	void* ValueLabel(std::vector<char> v) {
+		std::string str;
+		for each (auto c in v)
+		{
+			str.push_back(c);
+		}
+		if (slabel.count(str) == 1)return slabel[str];
+		slabel[str] = &Memory[usedIndex];
+		for each (auto c in v)
+		{
+			char* tp = new (&Memory[usedIndex]) char;
+			*tp = c;
+			usedIndex += sizeof(char);
+		}
+		return slabel[str];
+	};
 
 	//DC命令。(即値,ラベル名)
 	template<typename T>
@@ -153,10 +169,13 @@ public:
 #include "LD.h"
 #include "JMP.h"
 #include "ADD.h"
-#include "CPA.h"
+#include "CPAEQ.h"
+#include "CPANEQ.h"
 #include "JMPB.h"
 #include "INC.h"
 #include "Ref.h"
 #include "DRef.h"
 #include "LDR.h"
 #include "CAST.h"
+#include "Print.h"
+#include "SPRINT.h"
