@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="ヘッダー ファイル\BindOrder">
+      <UniqueIdentifier>{963d4d0a-c7f4-4adc-b22c-f91bc144fb22}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -27,11 +30,53 @@
     <ClInclude Include="StackMachineBuilder.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="BindOrder.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="CustomVariant.h">
       <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="BindOrder.h">
+      <Filter>ヘッダー ファイル\BindOrder</Filter>
+    </ClInclude>
+    <ClInclude Include="BindADD.h">
+      <Filter>ヘッダー ファイル\BindOrder</Filter>
+    </ClInclude>
+    <ClInclude Include="BindLD.h">
+      <Filter>ヘッダー ファイル\BindOrder</Filter>
+    </ClInclude>
+    <ClInclude Include="BindPRINT.h">
+      <Filter>ヘッダー ファイル\BindOrder</Filter>
+    </ClInclude>
+    <ClInclude Include="BindINC.h">
+      <Filter>ヘッダー ファイル\BindOrder</Filter>
+    </ClInclude>
+    <ClInclude Include="BindPOP.h">
+      <Filter>ヘッダー ファイル\BindOrder</Filter>
+    </ClInclude>
+    <ClInclude Include="BindPUSH.h">
+      <Filter>ヘッダー ファイル\BindOrder</Filter>
+    </ClInclude>
+    <ClInclude Include="BindJMP.h">
+      <Filter>ヘッダー ファイル\BindOrder</Filter>
+    </ClInclude>
+    <ClInclude Include="BindJMPB.h">
+      <Filter>ヘッダー ファイル\BindOrder</Filter>
+    </ClInclude>
+    <ClInclude Include="BindCPAEQ.h">
+      <Filter>ヘッダー ファイル\BindOrder</Filter>
+    </ClInclude>
+    <ClInclude Include="BindCPANEQ.h">
+      <Filter>ヘッダー ファイル\BindOrder</Filter>
+    </ClInclude>
+    <ClInclude Include="BindSPRINT.h">
+      <Filter>ヘッダー ファイル\BindOrder</Filter>
+    </ClInclude>
+    <ClInclude Include="BindArges.h">
+      <Filter>ヘッダー ファイル\BindOrder</Filter>
+    </ClInclude>
+    <ClInclude Include="BindREF.h">
+      <Filter>ヘッダー ファイル\BindOrder</Filter>
+    </ClInclude>
+    <ClInclude Include="BindDREF.h">
+      <Filter>ヘッダー ファイル\BindOrder</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

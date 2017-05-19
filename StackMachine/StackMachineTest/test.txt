@@ -1,25 +1,21 @@
 /*
-このプログラムは1から100までの和を表示します。
+ポインタが使えるようになった
 */
 
-/*カウンタ変数定義*/
-CNT idc 0;
+/*         int A = 15;           */
+A idc 15;
 
-/*和を入れる変数*/
-WA idc 0;
+/*         int B = 0;            */
+B idc 0;
 
-/*カウンタインクリメント*/
-START iinc CNT;
+/*         B = &A;               */
+ref B A;
 
-/*和にカウンタを足す*/
-iadd WA CNT;
+/*         A++;                  */
+iinc A;
 
-/*CNT==100をaxに代入*/
-icpaneq CNT 100;
+/*         B=*B;                 */
+idref B B;
 
-/*ax==trueならSTARTへジャンプ*/
-jmpb START ax;
-
-/*結果表示*/
-sprint "1から100までの和＝\0";
-iprint WA;
+/*         std::cout<<B;         */
+iprint B;

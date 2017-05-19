@@ -27,8 +27,8 @@ class StackMachine {
 	char* endOrderAdr;
 public:
 	//spレジスタのアドレス
-	char* GetSP() {
-		return &Memory[0];
+	char** GetSP() {
+		return (char**)&Memory[0];
 	};
 	//bpレジスタのアドレス
 	char* GetBP() {
@@ -63,6 +63,7 @@ public:
 	}
 	//実行
 	void Run() {
+		*GetSP() = &Memory[usedIndex];
 		while (true)
 		{
 			(*(OrderBase**)(*GetPR()))->Do();
@@ -166,6 +167,8 @@ public:
 
 };
 
+#include "PUSH.h"
+#include "POP.h"
 #include "LD.h"
 #include "JMP.h"
 #include "ADD.h"
@@ -173,8 +176,8 @@ public:
 #include "CPANEQ.h"
 #include "JMPB.h"
 #include "INC.h"
-#include "Ref.h"
-#include "DRef.h"
+#include "REF.h"
+#include "DREF.h"
 #include "LDR.h"
 #include "CAST.h"
 #include "Print.h"

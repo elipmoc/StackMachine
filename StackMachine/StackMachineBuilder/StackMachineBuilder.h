@@ -50,7 +50,7 @@ public:
 			);
 		NullChar = lit("\\0")[_val = '\0'];
 		EndLineChar = lit("\\n")[_val='\n'];
-		Char = lit('\'') >>NullChar|EndLineChar|char_>> lit('\'');
+		Char = lit('\'') >>(NullChar|EndLineChar|char_)-'\''>> lit('\'');
 		Value = strict_double | int_|  Char|bool_;
 		ValueAdr = Value[_val = BindValueAdr::Make(sm)] | String[_val=BindStringAdr::Make(sm)];
 		DC =
@@ -79,7 +79,7 @@ public:
 		Args4 = (Adr >> lit(' ') >> Adr >> lit(' ') >> Adr >> lit(' ') >> Adr)[_val = BindArgs4::Make()];
 		Args5 = (Adr)[_val=BindArgs5::Make()];
 		Args = (Args1 | Args3 | Args4 | Args5);
-		Order = (PRINT|ADD|LD|JMP|JMPB|CPAEQ|CPANEQ|INC);
+		Order = (PRINT|ADD|LD|JMP|JMPB|CPAEQ|CPANEQ|INC|PUSH|POP|REF|DREF);
 		JMP = lit("jmp") >> lit(' ') >> Args[_val = BindJMP::Make(sm)];
 		JMPB = lit("jmpb") >> lit(' ') >> Args[_val = BindJMPB::Make(sm)];
 		PRINT = 
@@ -98,6 +98,16 @@ public:
 			(lit("dadd") >> lit(' ') >> Args[_val = BindADD<double>::Make()]) |
 			(lit("badd") >> lit(' ') >> Args[_val = BindADD<bool>::Make()]) |
 			(lit("cadd") >> lit(' ') >> Args[_val = BindADD<char>::Make()]);
+		PUSH =
+			(lit("ipush") >> lit(' ') >> Args[_val = BindPUSH<int>::Make(sm)]) |
+			(lit("dpush") >> lit(' ') >> Args[_val = BindPUSH<double>::Make(sm)]) |
+			(lit("bpush") >> lit(' ') >> Args[_val = BindPUSH<bool>::Make(sm)]) |
+			(lit("cpush") >> lit(' ') >> Args[_val = BindPUSH<char>::Make(sm)]);
+		POP =
+			(lit("ipop") >> lit(' ') >> Args[_val = BindPOP<int>::Make(sm)]) |
+			(lit("dpop") >> lit(' ') >> Args[_val = BindPOP<double>::Make(sm)]) |
+			(lit("bpop") >> lit(' ') >> Args[_val = BindPOP<bool>::Make(sm)]) |
+			(lit("cpop") >> lit(' ') >> Args[_val = BindPOP<char>::Make(sm)]);
 		INC =
 			(lit("iinc") >> lit(' ') >> Args[_val = BindINC<int>::Make()]) |
 			(lit("dinc") >> lit(' ') >> Args[_val = BindINC<double>::Make()]) |
@@ -113,6 +123,14 @@ public:
 			(lit("dcpaneq") >> lit(' ') >> Args[_val = BindCPANEQ<double>::Make(sm)]) |
 			(lit("bcpaneq") >> lit(' ') >> Args[_val = BindCPANEQ<bool>::Make(sm)]) |
 			(lit("ccpaneq") >> lit(' ') >> Args[_val = BindCPANEQ<char>::Make(sm)]);
+		REF =
+			(lit("ref") >> lit(' ') >> Args[_val = BindREF::Make()]);
+		DREF =
+			(lit("idref") >> lit(' ') >> Args[_val = BindDREF<int>::Make()]) |
+			(lit("ddref") >> lit(' ') >> Args[_val = BindDREF<double>::Make()]) |
+			(lit("bdref") >> lit(' ') >> Args[_val = BindDREF<bool>::Make()]) |
+			(lit("cdref") >> lit(' ') >> Args[_val = BindDREF<char>::Make()]) |
+			(lit("pdref") >> lit(' ') >> Args[_val = BindDREF<void*>::Make()]);
 	}
 	//scriptコード全体をまとめる文法
 	spt::qi::rule<Iterator>Code;
@@ -126,6 +144,10 @@ public:
 	spt::qi::rule<Iterator, OrderBase*>ADD;
 	//INC命令
 	spt::qi::rule<Iterator, OrderBase*>INC;
+	//PUSH命令
+	spt::qi::rule<Iterator, OrderBase*>PUSH;
+	//POP命令
+	spt::qi::rule<Iterator, OrderBase*>POP;
 	//CPAEQ命令
 	spt::qi::rule<Iterator, OrderBase*>CPAEQ;
 	//CPANEQ命令
@@ -134,6 +156,10 @@ public:
 	spt::qi::rule<Iterator, OrderBase*>JMP;
 	//JMPB命令
 	spt::qi::rule<Iterator, OrderBase*>JMPB;
+	//REF命令
+	spt::qi::rule<Iterator, OrderBase*>REF;
+	//DREF命令
+	spt::qi::rule<Iterator, OrderBase*>DREF;
 	//実行命令
 	spt::qi::rule<Iterator, OrderBase*>Order;
 	//ラベル

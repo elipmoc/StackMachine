@@ -139,7 +139,7 @@
     <ClInclude Include="CAST.h" />
     <ClInclude Include="CPAEQ.h" />
     <ClInclude Include="CPANEQ.h" />
-    <ClInclude Include="DRef.h" />
+    <ClInclude Include="DREF.h" />
     <ClInclude Include="INC.h" />
     <ClInclude Include="JMP.h" />
     <ClInclude Include="JMPB.h" />
@@ -147,8 +147,10 @@
     <ClInclude Include="LDR.h" />
     <ClInclude Include="Order.h" />
     <ClInclude Include="OrderVector.h" />
+    <ClInclude Include="POP.h" />
     <ClInclude Include="Print.h" />
-    <ClInclude Include="Ref.h" />
+    <ClInclude Include="PUSH.h" />
+    <ClInclude Include="REF.h" />
     <ClInclude Include="SPRINT.h" />
     <ClInclude Include="StackMachine.h" />
     <ClInclude Include="stdafx.h" />

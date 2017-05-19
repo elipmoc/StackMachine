@@ -1,6 +1,6 @@
 #pragma once
 template<typename AD>
-struct Ref :OrderBase
+struct REF :OrderBase
 {
 private:
 	AD ad;
@@ -30,12 +30,10 @@ public:
 	virtual void Do() {
 		Do2<AD>();
 	};
-	Ref(AD ad) :ad(ad) {}
+	REF(AD ad) :ad(ad) {}
 };
 
-struct MakeRef {
-	template<typename AD>
-	auto operator()(AD ad) {
-		return new Ref< AD>(ad);
-	}
-};
+template<typename AD>
+auto MakeREF(AD ad) {
+	return new REF< AD>(ad);
+}

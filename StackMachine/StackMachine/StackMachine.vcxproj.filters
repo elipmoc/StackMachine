@@ -60,12 +60,6 @@
     <ClInclude Include="INC.h">
       <Filter>StackMachine\Order</Filter>
     </ClInclude>
-    <ClInclude Include="Ref.h">
-      <Filter>StackMachine\Order</Filter>
-    </ClInclude>
-    <ClInclude Include="DRef.h">
-      <Filter>StackMachine\Order</Filter>
-    </ClInclude>
     <ClInclude Include="LDR.h">
       <Filter>StackMachine\Order</Filter>
     </ClInclude>
@@ -82,6 +76,18 @@
       <Filter>StackMachine\Order</Filter>
     </ClInclude>
     <ClInclude Include="CPAEQ.h">
+      <Filter>StackMachine\Order</Filter>
+    </ClInclude>
+    <ClInclude Include="PUSH.h">
+      <Filter>StackMachine\Order</Filter>
+    </ClInclude>
+    <ClInclude Include="POP.h">
+      <Filter>StackMachine\Order</Filter>
+    </ClInclude>
+    <ClInclude Include="REF.h">
+      <Filter>StackMachine\Order</Filter>
+    </ClInclude>
+    <ClInclude Include="DREF.h">
       <Filter>StackMachine\Order</Filter>
     </ClInclude>
   </ItemGroup>

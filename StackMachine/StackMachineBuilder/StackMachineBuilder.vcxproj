@@ -138,7 +138,21 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BindADD.h" />
+    <ClInclude Include="BindArges.h" />
+    <ClInclude Include="BindCPAEQ.h" />
+    <ClInclude Include="BindCPANEQ.h" />
+    <ClInclude Include="BindDREF.h" />
+    <ClInclude Include="BindINC.h" />
+    <ClInclude Include="BindJMP.h" />
+    <ClInclude Include="BindJMPB.h" />
+    <ClInclude Include="BindLD.h" />
     <ClInclude Include="BindOrder.h" />
+    <ClInclude Include="BindPOP.h" />
+    <ClInclude Include="BindPRINT.h" />
+    <ClInclude Include="BindPUSH.h" />
+    <ClInclude Include="BindREF.h" />
+    <ClInclude Include="BindSPRINT.h" />
     <ClInclude Include="CustomVariant.h" />
     <ClInclude Include="StackMachineBuilder.h" />
     <ClInclude Include="stdafx.h" />

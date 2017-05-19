@@ -1,6 +1,6 @@
 #pragma once
-template<typename type,typename AD>
-struct DRef :OrderBase
+template<typename type, typename AD>
+struct DREF :OrderBase
 {
 private:
 	AD ad;
@@ -14,7 +14,7 @@ private:
 	template<>
 	void Do2<Args<2>>()
 	{
-		*(type*)(ad.adr1 + *ad.x1) =**(type**)ad.adr2;
+		*(type*)(ad.adr1 + *ad.x1) = **(type**)ad.adr2;
 	};
 	template<>
 	void Do2<Args<3>>()
@@ -30,13 +30,10 @@ public:
 	virtual void Do() {
 		Do2<AD>();
 	};
-	DRef(AD ad) :ad(ad) {}
+	DREF(AD ad) :ad(ad) {}
 };
 
-template<typename type>
-struct MakeDRef {
-	template<typename AD>
-	auto operator()(AD ad) {
-		return new DRef<type,AD>(ad);
-	}
-};
+template<typename type,typename AD>
+auto MakeDREF(type,AD ad) {
+	return new DREF<type, AD>(ad);
+}
