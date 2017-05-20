@@ -13,6 +13,8 @@
 #include "BindArges.h"
 #include "BindREF.h"
 #include "BindDREF.h"
+#include "BindLDR.h"
+#include "BindCAST.h"
 
 struct BindDCV {
 	StackMachine* sm;

@@ -13,10 +13,141 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="ヘッダー ファイル\StackMachineBuilder">
+      <UniqueIdentifier>{84d7a98e-5f47-41ae-82ce-b4f676e3ca2c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\StackMachine">
+      <UniqueIdentifier>{0e5c3bae-63aa-4237-b707-865c3ae22f55}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="StackMachineBuilder\BindADD.h">
+      <Filter>ヘッダー ファイル\StackMachineBuilder</Filter>
+    </ClInclude>
+    <ClInclude Include="StackMachineBuilder\BindArges.h">
+      <Filter>ヘッダー ファイル\StackMachineBuilder</Filter>
+    </ClInclude>
+    <ClInclude Include="StackMachineBuilder\BindCPAEQ.h">
+      <Filter>ヘッダー ファイル\StackMachineBuilder</Filter>
+    </ClInclude>
+    <ClInclude Include="StackMachineBuilder\BindCPANEQ.h">
+      <Filter>ヘッダー ファイル\StackMachineBuilder</Filter>
+    </ClInclude>
+    <ClInclude Include="StackMachineBuilder\BindDREF.h">
+      <Filter>ヘッダー ファイル\StackMachineBuilder</Filter>
+    </ClInclude>
+    <ClInclude Include="StackMachineBuilder\BindINC.h">
+      <Filter>ヘッダー ファイル\StackMachineBuilder</Filter>
+    </ClInclude>
+    <ClInclude Include="StackMachineBuilder\BindJMP.h">
+      <Filter>ヘッダー ファイル\StackMachineBuilder</Filter>
+    </ClInclude>
+    <ClInclude Include="StackMachineBuilder\BindJMPB.h">
+      <Filter>ヘッダー ファイル\StackMachineBuilder</Filter>
+    </ClInclude>
+    <ClInclude Include="StackMachineBuilder\BindLD.h">
+      <Filter>ヘッダー ファイル\StackMachineBuilder</Filter>
+    </ClInclude>
+    <ClInclude Include="StackMachineBuilder\BindLDR.h">
+      <Filter>ヘッダー ファイル\StackMachineBuilder</Filter>
+    </ClInclude>
+    <ClInclude Include="StackMachineBuilder\BindOrder.h">
+      <Filter>ヘッダー ファイル\StackMachineBuilder</Filter>
+    </ClInclude>
+    <ClInclude Include="StackMachineBuilder\BindPOP.h">
+      <Filter>ヘッダー ファイル\StackMachineBuilder</Filter>
+    </ClInclude>
+    <ClInclude Include="StackMachineBuilder\BindPRINT.h">
+      <Filter>ヘッダー ファイル\StackMachineBuilder</Filter>
+    </ClInclude>
+    <ClInclude Include="StackMachineBuilder\BindPUSH.h">
+      <Filter>ヘッダー ファイル\StackMachineBuilder</Filter>
+    </ClInclude>
+    <ClInclude Include="StackMachineBuilder\BindREF.h">
+      <Filter>ヘッダー ファイル\StackMachineBuilder</Filter>
+    </ClInclude>
+    <ClInclude Include="StackMachineBuilder\BindSPRINT.h">
+      <Filter>ヘッダー ファイル\StackMachineBuilder</Filter>
+    </ClInclude>
+    <ClInclude Include="StackMachineBuilder\CustomVariant.h">
+      <Filter>ヘッダー ファイル\StackMachineBuilder</Filter>
+    </ClInclude>
+    <ClInclude Include="StackMachineBuilder\StackMachineBuilder.h">
+      <Filter>ヘッダー ファイル\StackMachineBuilder</Filter>
+    </ClInclude>
+    <ClInclude Include="StackMachine\ADD.h">
+      <Filter>ヘッダー ファイル\StackMachine</Filter>
+    </ClInclude>
+    <ClInclude Include="StackMachine\AdressArgs.h">
+      <Filter>ヘッダー ファイル\StackMachine</Filter>
+    </ClInclude>
+    <ClInclude Include="StackMachine\CAST.h">
+      <Filter>ヘッダー ファイル\StackMachine</Filter>
+    </ClInclude>
+    <ClInclude Include="StackMachine\CPAEQ.h">
+      <Filter>ヘッダー ファイル\StackMachine</Filter>
+    </ClInclude>
+    <ClInclude Include="StackMachine\CPANEQ.h">
+      <Filter>ヘッダー ファイル\StackMachine</Filter>
+    </ClInclude>
+    <ClInclude Include="StackMachine\DREF.h">
+      <Filter>ヘッダー ファイル\StackMachine</Filter>
+    </ClInclude>
+    <ClInclude Include="StackMachine\INC.h">
+      <Filter>ヘッダー ファイル\StackMachine</Filter>
+    </ClInclude>
+    <ClInclude Include="StackMachine\JMP.h">
+      <Filter>ヘッダー ファイル\StackMachine</Filter>
+    </ClInclude>
+    <ClInclude Include="StackMachine\JMPB.h">
+      <Filter>ヘッダー ファイル\StackMachine</Filter>
+    </ClInclude>
+    <ClInclude Include="StackMachine\LD.h">
+      <Filter>ヘッダー ファイル\StackMachine</Filter>
+    </ClInclude>
+    <ClInclude Include="StackMachine\LDR.h">
+      <Filter>ヘッダー ファイル\StackMachine</Filter>
+    </ClInclude>
+    <ClInclude Include="StackMachine\Order.h">
+      <Filter>ヘッダー ファイル\StackMachine</Filter>
+    </ClInclude>
+    <ClInclude Include="StackMachine\OrderVector.h">
+      <Filter>ヘッダー ファイル\StackMachine</Filter>
+    </ClInclude>
+    <ClInclude Include="StackMachine\POP.h">
+      <Filter>ヘッダー ファイル\StackMachine</Filter>
+    </ClInclude>
+    <ClInclude Include="StackMachine\Print.h">
+      <Filter>ヘッダー ファイル\StackMachine</Filter>
+    </ClInclude>
+    <ClInclude Include="StackMachine\PUSH.h">
+      <Filter>ヘッダー ファイル\StackMachine</Filter>
+    </ClInclude>
+    <ClInclude Include="StackMachine\REF.h">
+      <Filter>ヘッダー ファイル\StackMachine</Filter>
+    </ClInclude>
+    <ClInclude Include="StackMachine\SPRINT.h">
+      <Filter>ヘッダー ファイル\StackMachine</Filter>
+    </ClInclude>
+    <ClInclude Include="StackMachine\StackMachine.h">
+      <Filter>ヘッダー ファイル\StackMachine</Filter>
+    </ClInclude>
+    <ClInclude Include="StackMachine\type.h">
+      <Filter>ヘッダー ファイル\StackMachine</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="BindCAST.h">
+      <Filter>ヘッダー ファイル\StackMachineBuilder</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

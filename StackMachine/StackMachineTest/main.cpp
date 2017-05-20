@@ -1,4 +1,5 @@
-#include "StackMachineBuilder.h"
+#include "stdafx.h"
+#include "StackMachineBuilder\StackMachineBuilder.h"
 #include <fstream>
 void main() {
 	std::string path;

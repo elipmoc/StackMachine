@@ -1,8 +1,7 @@
 #pragma once
-#include "stdafx.h"
 namespace phx = boost::phoenix;
 namespace spt = boost::spirit;
-#include "StackMachine.h"
+#include "..\StackMachine\StackMachine.h"
 #include "CustomVariant.h"
 #include "BindOrder.h"
 
@@ -79,7 +78,7 @@ public:
 		Args4 = (Adr >> lit(' ') >> Adr >> lit(' ') >> Adr >> lit(' ') >> Adr)[_val = BindArgs4::Make()];
 		Args5 = (Adr)[_val=BindArgs5::Make()];
 		Args = (Args1 | Args3 | Args4 | Args5);
-		Order = (PRINT|ADD|LD|JMP|JMPB|CPAEQ|CPANEQ|INC|PUSH|POP|REF|DREF);
+		Order = (PRINT|ADD|LD|LDR|JMP|JMPB|CPAEQ|CPANEQ|INC|PUSH|POP|REF|DREF|CAST);
 		JMP = lit("jmp") >> lit(' ') >> Args[_val = BindJMP::Make(sm)];
 		JMPB = lit("jmpb") >> lit(' ') >> Args[_val = BindJMPB::Make(sm)];
 		PRINT = 
@@ -93,11 +92,17 @@ public:
 			(lit("dld") >> lit(' ') >> Args[_val = BindLD<double>::Make()]) |
 			(lit("bld") >> lit(' ') >> Args[_val = BindLD<bool>::Make()]) |
 			(lit("cld") >> lit(' ') >> Args[_val = BindLD<char>::Make()]);
+		LDR =
+			(lit("ildr") >> lit(' ') >> Args[_val = BindLDR<int>::Make()]) |
+			(lit("dldr") >> lit(' ') >> Args[_val = BindLDR<double>::Make()]) |
+			(lit("bldr") >> lit(' ') >> Args[_val = BindLDR<bool>::Make()]) |
+			(lit("cldr") >> lit(' ') >> Args[_val = BindLDR<char>::Make()]);
 		ADD =
 			(lit("iadd") >> lit(' ') >> Args[_val = BindADD<int>::Make()]) |
 			(lit("dadd") >> lit(' ') >> Args[_val = BindADD<double>::Make()]) |
 			(lit("badd") >> lit(' ') >> Args[_val = BindADD<bool>::Make()]) |
-			(lit("cadd") >> lit(' ') >> Args[_val = BindADD<char>::Make()]);
+			(lit("cadd") >> lit(' ') >> Args[_val = BindADD<char>::Make()]) |
+			(lit("padd") >> lit(' ') >> Args[_val = BindADD<char*>::Make()]);
 		PUSH =
 			(lit("ipush") >> lit(' ') >> Args[_val = BindPUSH<int>::Make(sm)]) |
 			(lit("dpush") >> lit(' ') >> Args[_val = BindPUSH<double>::Make(sm)]) |
@@ -131,6 +136,19 @@ public:
 			(lit("bdref") >> lit(' ') >> Args[_val = BindDREF<bool>::Make()]) |
 			(lit("cdref") >> lit(' ') >> Args[_val = BindDREF<char>::Make()]) |
 			(lit("pdref") >> lit(' ') >> Args[_val = BindDREF<void*>::Make()]);
+		CAST =
+			(lit("icastd") >> lit(' ') >> Args[_val = BindCAST<int, double>::Make()]) |
+			(lit("dcasti") >> lit(' ') >> Args[_val = BindCAST<double, int>::Make()]) |
+			(lit("icastc") >> lit(' ') >> Args[_val = BindCAST<int, char>::Make()]) |
+			(lit("ccasti") >> lit(' ') >> Args[_val = BindCAST<char, int>::Make()]) |
+			(lit("icastb") >> lit(' ') >> Args[_val = BindCAST<int, bool>::Make()]) |
+			(lit("bcasti") >> lit(' ') >> Args[_val = BindCAST<bool, int>::Make()]) |
+			(lit("dcastc") >> lit(' ') >> Args[_val = BindCAST<double, char>::Make()]) |
+			(lit("ccastd") >> lit(' ') >> Args[_val = BindCAST<char, double>::Make()]) |
+			(lit("dcastb") >> lit(' ') >> Args[_val = BindCAST<double, bool>::Make()]) |
+			(lit("bcastd") >> lit(' ') >> Args[_val = BindCAST<bool, double>::Make()]) |
+			(lit("ccastb") >> lit(' ') >> Args[_val = BindCAST<char, bool>::Make()]) |
+			(lit("bcastc") >> lit(' ') >> Args[_val = BindCAST<bool, char>::Make()]);
 	}
 	//scriptコード全体をまとめる文法
 	spt::qi::rule<Iterator>Code;
@@ -140,6 +158,8 @@ public:
 	spt::qi::rule<Iterator,OrderBase*>PRINT;
 	//LD命令
 	spt::qi::rule<Iterator, OrderBase*>LD;
+	//LDA命令
+	spt::qi::rule<Iterator, OrderBase*>LDR;
 	//ADD命令
 	spt::qi::rule<Iterator, OrderBase*>ADD;
 	//INC命令
@@ -160,6 +180,8 @@ public:
 	spt::qi::rule<Iterator, OrderBase*>REF;
 	//DREF命令
 	spt::qi::rule<Iterator, OrderBase*>DREF;
+	//CAST命令
+	spt::qi::rule<Iterator, OrderBase*>CAST;
 	//実行命令
 	spt::qi::rule<Iterator, OrderBase*>Order;
 	//ラベル

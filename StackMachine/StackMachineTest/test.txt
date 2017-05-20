@@ -1,21 +1,4 @@
-/*
-ポインタが使えるようになった
-*/
-
-/*         int A = 15;           */
-A idc 15;
-
-/*         int B = 0;            */
-B idc 0;
-
-/*         B = &A;               */
-ref B A;
-
-/*         A++;                  */
-iinc A;
-
-/*         B=*B;                 */
-idref B B;
-
-/*         std::cout<<B;         */
-iprint B;
+A idc 65;
+B cdc 'p';
+ccasti B A;
+cprint B;

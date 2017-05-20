@@ -83,13 +83,13 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
+      <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>C:\Users\Owner\Source\Repos\StackMachine\StackMachine\StackMachine;C:\Users\Owner\Source\Repos\StackMachine\StackMachine\StackMachineBuilder;C:\boost_1_62_0\boostLib\include\boost-1_62;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\boost_1_62_0\boostLib\include\boost-1_62;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -113,14 +113,14 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
+      <PrecompiledHeader>Use</PrecompiledHeader>
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>C:\Users\Owner\Source\Repos\StackMachine\StackMachine\StackMachine;C:\Users\Owner\Source\Repos\StackMachine\StackMachine\StackMachineBuilder;C:\boost_1_62_0\boostLib\include\boost-1_62;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\boost_1_62_0\boostLib\include\boost-1_62;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -149,6 +149,52 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="BindCAST.h" />
+    <ClInclude Include="StackMachineBuilder\BindADD.h" />
+    <ClInclude Include="StackMachineBuilder\BindArges.h" />
+    <ClInclude Include="StackMachineBuilder\BindCPAEQ.h" />
+    <ClInclude Include="StackMachineBuilder\BindCPANEQ.h" />
+    <ClInclude Include="StackMachineBuilder\BindDREF.h" />
+    <ClInclude Include="StackMachineBuilder\BindINC.h" />
+    <ClInclude Include="StackMachineBuilder\BindJMP.h" />
+    <ClInclude Include="StackMachineBuilder\BindJMPB.h" />
+    <ClInclude Include="StackMachineBuilder\BindLD.h" />
+    <ClInclude Include="StackMachineBuilder\BindLDR.h" />
+    <ClInclude Include="StackMachineBuilder\BindOrder.h" />
+    <ClInclude Include="StackMachineBuilder\BindPOP.h" />
+    <ClInclude Include="StackMachineBuilder\BindPRINT.h" />
+    <ClInclude Include="StackMachineBuilder\BindPUSH.h" />
+    <ClInclude Include="StackMachineBuilder\BindREF.h" />
+    <ClInclude Include="StackMachineBuilder\BindSPRINT.h" />
+    <ClInclude Include="StackMachineBuilder\CustomVariant.h" />
+    <ClInclude Include="StackMachineBuilder\StackMachineBuilder.h" />
+    <ClInclude Include="StackMachine\ADD.h" />
+    <ClInclude Include="StackMachine\AdressArgs.h" />
+    <ClInclude Include="StackMachine\CAST.h" />
+    <ClInclude Include="StackMachine\CPAEQ.h" />
+    <ClInclude Include="StackMachine\CPANEQ.h" />
+    <ClInclude Include="StackMachine\DREF.h" />
+    <ClInclude Include="StackMachine\INC.h" />
+    <ClInclude Include="StackMachine\JMP.h" />
+    <ClInclude Include="StackMachine\JMPB.h" />
+    <ClInclude Include="StackMachine\LD.h" />
+    <ClInclude Include="StackMachine\LDR.h" />
+    <ClInclude Include="StackMachine\Order.h" />
+    <ClInclude Include="StackMachine\OrderVector.h" />
+    <ClInclude Include="StackMachine\POP.h" />
+    <ClInclude Include="StackMachine\Print.h" />
+    <ClInclude Include="StackMachine\PUSH.h" />
+    <ClInclude Include="StackMachine\REF.h" />
+    <ClInclude Include="StackMachine\SPRINT.h" />
+    <ClInclude Include="StackMachine\StackMachine.h" />
+    <ClInclude Include="StackMachine\type.h" />
+    <ClInclude Include="stdafx.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
