@@ -10,7 +10,7 @@ struct BindINC :boost::static_visitor<OrderBase*> {
 		return MakeINC(type(), args);
 	}
 	template<>
-	OrderBase* operator ()(Args<5> args)const {
+	OrderBase* operator ()(Args<2> args)const {
 		return MakeINC(type(), args);
 	}
 

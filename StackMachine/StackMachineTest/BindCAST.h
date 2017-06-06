@@ -6,7 +6,7 @@ struct BindCAST :boost::static_visitor<OrderBase*> {
 		return nullptr;
 	}
 	template<>
-	OrderBase* operator ()(Args<1> args)const {
+	OrderBase* operator ()(Args<2> args)const {
 		return MakeCAST(type1(),type2(), args);
 	}
 	template<>

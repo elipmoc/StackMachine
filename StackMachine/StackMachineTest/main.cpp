@@ -11,9 +11,14 @@ void main() {
 	while (ifs&&std::getline(ifs, buf)) {
 		codeStr += buf;
 	}
-	Compile(
-		codeStr
-	);
+	try{
+		Compile(
+			codeStr
+		);
+	}
+	catch(std::string str){
+		std::cout << str;
+	}
 	std::cin >> path;
 	/*///スタックマシン用意
 	StackMachine sm;

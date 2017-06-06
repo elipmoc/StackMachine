@@ -8,24 +8,19 @@ private:
 	template<typename AD2>
 	void Do2();
 	template<>
-	void Do2<Args<1>>()
-	{
-		*(bool*)sm.GetAX() = (*(type*)ad.adr1) != (*(type*)ad.adr2);
-	};
-	template<>
 	void Do2<Args<2>>()
 	{
-		*(bool*)sm.GetAX() = *(type*)(ad.adr1 + *ad.x1) != *(type*)ad.adr2;
+		*(bool*)sm.GetAX() = (*(type*)ad.GetAdr<1>()) != (*(type*)ad.GetAdr<2>());
 	};
 	template<>
 	void Do2<Args<3>>()
 	{
-		*(bool*)sm.GetAX() = *(type*)ad.adr1 != *(type*)(ad.adr2 + *ad.x2);
+		*(bool*)sm.GetAX() = *(type*)(ad.GetAdr<1>() + *(int*)ad.GetAdr<2>()) != *(type*)ad.GetAdr<3>();
 	};
 	template<>
 	void Do2<Args<4>>()
 	{
-		*(bool*)sm.GetAX() = *(type*)(ad.adr1 + *ad.x1) != *(type*)(ad.adr2 + *ad.x2);
+		*(bool*)sm.GetAX() = *(type*)(ad.GetAdr<1>() + *(int*)ad.GetAdr<2>()) != *(type*)(ad.GetAdr<3>() + *(int*)ad.GetAdr<4>());
 	};
 public:
 	virtual void Do() {

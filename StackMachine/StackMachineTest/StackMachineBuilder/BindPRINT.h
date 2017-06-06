@@ -6,11 +6,11 @@ struct BindPRINT :boost::static_visitor<OrderBase*> {
 		return nullptr;
 	}
 	template<>
-	OrderBase* operator ()(Args<5> args)const {
+	OrderBase* operator ()(Args<1> args)const {
 		return MakePRINT(type(), args);
 	}
 	template<>
-	OrderBase* operator ()(Args<1> args)const {
+	OrderBase* operator ()(Args<2> args)const {
 		return MakePRINT(type(), args);
 	}
 

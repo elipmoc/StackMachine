@@ -12,7 +12,7 @@ public: BindPOP(StackMachine* sm) :sm(sm) {}
 			return MakePOP(type(), args, *sm);
 		}
 		template<>
-		OrderBase* operator ()(Args<5> args)const {
+		OrderBase* operator ()(Args<2> args)const {
 			return MakePOP(type(), args, *sm);
 		}
 

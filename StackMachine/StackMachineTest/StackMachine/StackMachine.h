@@ -56,7 +56,7 @@ public:
 	void SetOrderVector(OrderVector orders) {
 		//はじめの命令のポインタが格納されてるポインタを保存
 		*GetPR() = &Memory[usedIndex];
-		for (int i = 0; i < orders.size(); i++) {
+		for (size_t i = 0; i < orders.size(); i++) {
 			AddOrder(orders[i]);
 		}
 		endOrderAdr = &Memory[usedIndex - 4];

@@ -8,28 +8,22 @@ private:
 	template<typename AD2>
 	void Do2();
 	template<>
-	void Do2<Args<1>>()
-	{
-		if(*(bool*)ad.adr2)
-			*sm.GetPR() = *(char**)(ad.adr1) - 4;
-	};
-	template<>
 	void Do2<Args<2>>()
 	{
-		if (*(bool*)ad.adr2)
-			*sm.GetPR() = *(char**)(ad.adr1 + *ad.x1) - 4;
+		if(*(bool*)ad.GetAdr<2>())
+			*sm.GetPR() = *(char**)(ad.GetAdr<1>()) - 4;
 	};
 	template<>
 	void Do2<Args<3>>()
 	{
-		if (*(bool*)(ad.adr2 + *ad.x2))
-			*sm.GetPR() = *(char**)(ad.adr1) - 4;
+		if (*(bool*)ad.GetAdr<3>())
+			*sm.GetPR() = *(char**)(ad.GetAdr<1>() + *(int*)ad.GetAdr<2>()) - 4;
 	};
 	template<>
 	void Do2<Args<4>>()
 	{
-		if (*(bool*)(ad.adr2+*ad.x2))
-			*sm.GetPR() = *(char**)(ad.adr1 + *ad.x1) - 4;
+		if (*(bool*)(ad.GetAdr<3>()+*(int*)ad.GetAdr<4>()))
+			*sm.GetPR() = *(char**)(ad.GetAdr<1>() + *(int*)ad.GetAdr<2>()) - 4;
 	};
 public:
 	virtual void Do() {

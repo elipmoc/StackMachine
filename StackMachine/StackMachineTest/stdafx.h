@@ -7,6 +7,7 @@
 
 
 #define WIN32_LEAN_AND_MEAN             // Windows ヘッダーから使用されていない部分を除外します。
+#include <boost\fusion\include\std_tuple.hpp>
 #include <boost\spirit\include\qi.hpp>
 #include <boost\lambda\lambda.hpp>
 #include <boost\spirit\include\phoenix.hpp>

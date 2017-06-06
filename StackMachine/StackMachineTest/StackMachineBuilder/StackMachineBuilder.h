@@ -5,7 +5,6 @@ namespace spt = boost::spirit;
 #include "CustomVariant.h"
 #include "BindOrder.h"
 
-
 //グラマーの定義
 /////////////////////////////////////////
 
@@ -73,11 +72,11 @@ public:
 			lit("gr7")[_val = sm.GetGR(7)] |
 			lit("gr8")[_val = sm.GetGR(8)];
 		Adr = LabelAdr | Register|ValueAdr;
-		Args1 = (Adr >> lit(' ') >> Adr)[_val = BindArgs1::Make()];
+		Args1 = (Adr)[_val=BindArgs1::Make()];
+		Args2 = (Adr >> lit(' ') >> Adr)[_val = BindArgs2::Make()]; 
 		Args3 = (Adr >> lit(' ') >> Adr >> lit(' ') >> Adr)[_val = BindArgs3::Make()];
 		Args4 = (Adr >> lit(' ') >> Adr >> lit(' ') >> Adr >> lit(' ') >> Adr)[_val = BindArgs4::Make()];
-		Args5 = (Adr)[_val=BindArgs5::Make()];
-		Args = (Args1 | Args3 | Args4 | Args5);
+		Args = (Args4 | Args3 | Args2 | Args1);
 		Order = (PRINT|ADD|LD|LDR|JMP|JMPB|CPAEQ|CPANEQ|INC|PUSH|POP|REF|DREF|CAST);
 		JMP = lit("jmp") >> lit(' ') >> Args[_val = BindJMP::Make(sm)];
 		JMPB = lit("jmpb") >> lit(' ') >> Args[_val = BindJMPB::Make(sm)];
@@ -192,14 +191,14 @@ public:
 	spt::qi::rule<Iterator, void*>Register;
 	//アドレス
 	spt::qi::rule<Iterator, void*>Adr;
-	//Arg<1>
+	//Args<1>
 	spt::qi::rule<Iterator, Args<1>()>Args1;
-	//Arg<3>
+	//Args<2>
+	spt::qi::rule<Iterator, Args<2>()>Args2;
+	//Args<3>
 	spt::qi::rule<Iterator, Args<3>()>Args3;
-	//Arg<4>
+	//Args<4>
 	spt::qi::rule<Iterator, Args<4>()>Args4;
-	//Arg<5>
-	spt::qi::rule<Iterator, Args<5>()>Args5;
 	//Args<...>
 	spt::qi::rule<Iterator, VarArgs()>Args;
 	//char形式
@@ -227,8 +226,7 @@ void Compile(std::string str) {
 	auto last = str.end();
 	bool r = spt::qi::parse(first, last, script_parser);
 	if (first != last) // 読み込みしきれてないとき
-		throw "文法エラー";
-	if (r == false)throw "文法エラー";
+		throw std::string("文法エラー");
+	if (r == false)throw std::string("文法エラー");
 	script_parser.Run();
 }
-

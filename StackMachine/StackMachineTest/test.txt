@@ -1,4 +1,9 @@
-A idc 65;
-B cdc 'p';
-ccasti B A;
-cprint B;
+COUNT idc 1;
+TOTAL idc 0;
+MAX idc 1000;
+LOOP iadd TOTAL COUNT;
+icpaeq COUNT MAX;
+jmpb OWARI ax;
+iinc COUNT;
+jmp LOOP;
+OWARI iprint TOTAL;

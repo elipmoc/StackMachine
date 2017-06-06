@@ -11,7 +11,7 @@ struct BindJMP :boost::static_visitor<OrderBase*> {
 		return MakeJMP(args, *sm);
 	}
 	template<>
-	OrderBase* operator ()(Args<5> args)const {
+	OrderBase* operator ()(Args<2> args)const {
 		return MakeJMP(args, *sm);
 	}
 	static OrderBase* _Make(StackMachine* sm, VarArgs& va) {

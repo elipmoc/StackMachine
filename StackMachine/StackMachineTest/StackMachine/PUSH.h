@@ -8,16 +8,16 @@ private:
 	template<typename AD2>
 	void Do2();
 	template<>
-	void Do2<Args<5>>()
+	void Do2<Args<1>>()
 	{
-		**(type**)sm.GetSP() = *(type*)(ad.adr1);
+		**(type**)sm.GetSP() = *(type*)(ad.GetAdr<1>());
 		*(char**)sm.GetSP() += sizeof(type);
 
 	};
 	template<>
-	void Do2<Args<1>>()
+	void Do2<Args<2>>()
 	{
-		**(type**)sm.GetSP() = *(type*)(ad.adr1 + *(int*)ad.adr2);
+		**(type**)sm.GetSP() = *(type*)(ad.GetAdr<1>() + *(int*)ad.GetAdr<2>());
 		*(char**)sm.GetSP() += sizeof(type);
 	};
 public:

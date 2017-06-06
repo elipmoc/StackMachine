@@ -7,24 +7,19 @@ private:
 	template<typename AD2>
 	void Do2();
 	template<>
-	void Do2<Args<1>>()
-	{
-		(*(char**)ad.adr1) = ad.adr2;
-	};
-	template<>
 	void Do2<Args<2>>()
 	{
-		*(char**)(ad.adr1 + *ad.x1) = ad.adr2;
+		(*(char**)ad.GetAdr<1>()) = ad.GetAdr<2>();
 	};
 	template<>
 	void Do2<Args<3>>()
 	{
-		*(char**)ad.adr1 = (ad.adr2 + *ad.x2);
+		*(char**)(ad.GetAdr<1>() + *ad.GetAdr<2>()) = ad.GetAdr<3>();
 	};
 	template<>
 	void Do2<Args<4>>()
 	{
-		*(char**)(ad.adr1 + *ad.x1) = (ad.adr2 + *ad.x2);
+		*(char**)(ad.GetAdr<1>() + *ad.GetAdr<2>()) = (ad.GetAdr<3>() + *ad.GetAdr<4>());
 	};
 public:
 	virtual void Do() {

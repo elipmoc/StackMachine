@@ -10,7 +10,7 @@ public: BindPUSH(StackMachine* sm) :sm(sm) {}
 			return MakePUSH(type(), args, *sm);
 		}
 		template<>
-		OrderBase* operator ()(Args<5> args)const {
+		OrderBase* operator ()(Args<2> args)const {
 			return MakePUSH(type(), args, *sm);
 		}
 

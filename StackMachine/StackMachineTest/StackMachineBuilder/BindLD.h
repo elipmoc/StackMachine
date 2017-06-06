@@ -6,7 +6,7 @@ struct BindLD :boost::static_visitor<OrderBase*> {
 		return nullptr;
 	}
 	template<>
-	OrderBase* operator ()(Args<1> args)const {
+	OrderBase* operator ()(Args<2> args)const {
 		return MakeLD(type(), args);
 	}
 	template<>
