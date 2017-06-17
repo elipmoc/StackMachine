@@ -1,4 +1,5 @@
 #pragma once
+
 struct BindArgs1
 {
 	static auto _Make(void* adr1) {

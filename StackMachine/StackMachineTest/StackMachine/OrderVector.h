@@ -13,13 +13,13 @@ struct Order {
 using OrderVector = std::vector<Order>;
 static std::string __label="";
 //グローバル演算子オーバーロード
-OrderVector& operator<<(OrderVector& ov, OrderBase* ob) {
+inline OrderVector& operator<<(OrderVector& ov, OrderBase* ob) {
 	
 	ov.push_back(Order(ob,__label));
 	__label = "";
 	return ov;
 }
-OrderVector& operator<<(OrderVector& ov, std::string _label) {
+inline OrderVector& operator<<(OrderVector& ov, std::string _label) {
 	if (__label != "")throw "labelを入れたあとはOrderBase*を入れて下さい";
 	__label = _label;
 	return ov;

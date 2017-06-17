@@ -10,12 +10,12 @@ private:
 	template<>
 	void Do2<Args<1>>()
 	{
-		*sm.GetPR()= *(char**)(ad.GetAdr<1>())-4;
+		*sm.GetPR()= *(char**)(ad.GetAdr<1>());
 	};
 	template<>
 	void Do2<Args<2>>()
 	{
-		*sm.GetPR() = *(char**)(ad.GetAdr<1>()+*(int*)ad.GetAdr<2>())-4;
+		*sm.GetPR() = *(char**)(ad.GetAdr<1>()+*(int*)ad.GetAdr<2>());
 	};
 public:
 	virtual void Do() {

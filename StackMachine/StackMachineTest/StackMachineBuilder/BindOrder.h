@@ -1,4 +1,8 @@
 #pragma once
+
+namespace phx = boost::phoenix;
+namespace spt = boost::spirit;
+
 #include "BindADD.h"
 #include "BindLD.h"
 #include "BindINC.h"
@@ -6,6 +10,7 @@
 #include "BindPUSH.h"
 #include "BindJMP.h"
 #include "BindJMPB.h"
+#include "BindSCAN.h"
 #include "BindPRINT.h"
 #include "BindSPRINT.h"
 #include "BindCPAEQ.h"
@@ -15,6 +20,7 @@
 #include "BindDREF.h"
 #include "BindLDR.h"
 #include "BindCAST.h"
+#include "BindEND.h"
 
 struct BindDCV {
 	StackMachine* sm;

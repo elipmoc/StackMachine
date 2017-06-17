@@ -25,7 +25,11 @@ class StackMachine {
 	int usedIndex;
 	//最後の命令が格納されているアドレス
 	char* endOrderAdr;
+	//エンドフラグ
+	bool endflag = false;
 public:
+	//エンドフラグセット
+	void SetEndFlag() { endflag = true; }
 	//spレジスタのアドレス
 	char** GetSP() {
 		return (char**)&Memory[0];
@@ -64,17 +68,19 @@ public:
 	//実行
 	void Run() {
 		*GetSP() = &Memory[usedIndex];
-		while (true)
-		{
-			(*(OrderBase**)(*GetPR()))->Do();
+		while (!endflag)
+		{		
+			if (*GetPR() == endOrderAdr + 4)throw std::string("プログラムはENDで終わらず終了しました");	
 			*GetPR() += 4;
-			if (*GetPR() == endOrderAdr + 4)return;
+			(*(OrderBase**)(*GetPR()-4))->Do();
+
+
 		}
 	}
 private:
 	void AddOrder(Order& order) {
 		*(void**)(&Memory[usedIndex]) = order.ob;
-		if (order.label != "") {
+		if (order.label != "" && label.count(order.label)==1) {
 			*(char**)label[order.label] = &Memory[usedIndex];
 		}
 		usedIndex += 4;
@@ -167,10 +173,12 @@ public:
 
 };
 
+
 #include "PUSH.h"
 #include "POP.h"
 #include "LD.h"
 #include "JMP.h"
+#include "END.h"
 #include "ADD.h"
 #include "CPAEQ.h"
 #include "CPANEQ.h"
@@ -180,5 +188,7 @@ public:
 #include "DREF.h"
 #include "LDR.h"
 #include "CAST.h"
+#include "SCAN.h"
 #include "Print.h"
 #include "SPRINT.h"
+#include "RunMachine.h"

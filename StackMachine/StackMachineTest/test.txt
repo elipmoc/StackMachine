@@ -1,9 +1,30 @@
-COUNT idc 1;
-TOTAL idc 0;
-MAX idc 1000;
-LOOP iadd TOTAL COUNT;
-icpaeq COUNT MAX;
-jmpb OWARI ax;
-iinc COUNT;
-jmp LOOP;
-OWARI iprint TOTAL;
+//変数宣言
+idc A=8;
+idc B=2;
+//引数をpush
+ipush(A);
+ipush(B);
+//戻る場所保存
+ppush(pr);
+//PLUS関数呼び出し
+jmp(PLUS);
+//PLUS関数の戻り値取得
+ipop(A);
+//画面に戻り値を表示*/
+iprint(A);
+end;
+
+//PLUS関数(int a,int b)*/
+/*a+bを返す*/
+
+PLUS ild(bp,sp);
+padd(bp,-8);
+idref(gr2,bp);/*引数Bを取得*/
+padd(bp,-4);
+idref(gr3,bp);/*引数Aを取得*/
+iadd(gr2,gr3);/*A+Bする*/
+ppop(gr1);
+padd(gr1,4);
+ild(sp,bp);
+ipush(gr2);/*戻り値push*/
+jmp(gr1);

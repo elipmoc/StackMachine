@@ -3,6 +3,7 @@ template<typename type, typename AD>
 struct ADD :OrderBase
 {
 private:
+	
 	AD ad;
 	template<typename AD2>
 	void Do2();
@@ -55,6 +56,14 @@ public:
 		Do2<AD>();
 	};
 	ADD(AD ad) :ad(ad) {}
+};
+
+template<typename AD>
+struct ADD<bool, AD> :OrderBase
+{
+public:
+	virtual void Do(){};
+	ADD(AD ad) { throw std::string("not expect ADD<bool>"); }
 };
 
 template<typename Type,typename AD>

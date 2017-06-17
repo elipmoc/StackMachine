@@ -11,13 +11,13 @@ private:
 	void Do2<Args<2>>()
 	{
 		if(*(bool*)ad.GetAdr<2>())
-			*sm.GetPR() = *(char**)(ad.GetAdr<1>()) - 4;
+			*sm.GetPR() = *(char**)(ad.GetAdr<1>());
 	};
 	template<>
 	void Do2<Args<3>>()
 	{
 		if (*(bool*)ad.GetAdr<3>())
-			*sm.GetPR() = *(char**)(ad.GetAdr<1>() + *(int*)ad.GetAdr<2>()) - 4;
+			*sm.GetPR() = *(char**)(ad.GetAdr<1>() + *(int*)ad.GetAdr<2>());
 	};
 	template<>
 	void Do2<Args<4>>()

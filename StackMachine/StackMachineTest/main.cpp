@@ -1,25 +1,27 @@
-#include "stdafx.h"
-#include "StackMachineBuilder\StackMachineBuilder.h"
+#include "StackMachineCompiler.h"
 #include <fstream>
 void main() {
 	std::string path;
-	std::string codeStr;
 	std::string buf;
 	path = "test.txt";
-	//std::cin >> path;
 	std::ifstream ifs(path);
+	StackMachineCompiler smc;
+	int lineCount=0;
 	while (ifs&&std::getline(ifs, buf)) {
-		codeStr += buf;
+		lineCount++;
+		 try {
+			 smc.Compile(
+				 buf
+			 );
+		 }
+		 catch (std::string str) {
+			 std::cout << str<<"Line:"<<lineCount<<std::endl<<std::endl;
+			 std::cout<<"   " <<'"'<< buf <<'"'<< std::endl<<std::endl;
+			 return;
+		 }
 	}
-	try{
-		Compile(
-			codeStr
-		);
-	}
-	catch(std::string str){
-		std::cout << str;
-	}
-	std::cin >> path;
+
+	smc.Run();
 	/*///スタックマシン用意
 	StackMachine sm;
 	///定数確保///

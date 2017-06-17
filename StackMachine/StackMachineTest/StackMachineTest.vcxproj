@@ -90,6 +90,10 @@
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>C:\boost_1_62_0\boostLib\include\boost-1_62;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <MultiProcessorCompilation>false</MultiProcessorCompilation>
+      <ForcedIncludeFiles>stdafx.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <EnableParallelCodeGeneration>false</EnableParallelCodeGeneration>
+      <MinimalRebuild>true</MinimalRebuild>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -121,6 +125,10 @@
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>C:\boost_1_62_0\boostLib\include\boost-1_62;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <ForcedIncludeFiles>stdafx.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <EnableParallelCodeGeneration>false</EnableParallelCodeGeneration>
+      <MultiProcessorCompilation>false</MultiProcessorCompilation>
+      <MinimalRebuild>true</MinimalRebuild>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -149,18 +157,27 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="StackMachineBuilder\StackMachineBuilder.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClInclude Include="StackMachineBuilder\BindCAST.h" />
+    <ClInclude Include="StackMachineBuilder\BindSCAN.h" />
+    <ClInclude Include="StackMachineBuilder\TemplateInstantiation.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="BindCAST.h" />
     <ClInclude Include="StackMachineBuilder\BindADD.h" />
     <ClInclude Include="StackMachineBuilder\BindArges.h" />
     <ClInclude Include="StackMachineBuilder\BindCPAEQ.h" />
     <ClInclude Include="StackMachineBuilder\BindCPANEQ.h" />
     <ClInclude Include="StackMachineBuilder\BindDREF.h" />
+    <ClInclude Include="StackMachineBuilder\BindEND.h" />
     <ClInclude Include="StackMachineBuilder\BindINC.h" />
     <ClInclude Include="StackMachineBuilder\BindJMP.h" />
     <ClInclude Include="StackMachineBuilder\BindJMPB.h" />
@@ -174,12 +191,14 @@
     <ClInclude Include="StackMachineBuilder\BindSPRINT.h" />
     <ClInclude Include="StackMachineBuilder\CustomVariant.h" />
     <ClInclude Include="StackMachineBuilder\StackMachineBuilder.h" />
+    <ClInclude Include="StackMachineCompiler.h" />
     <ClInclude Include="StackMachine\ADD.h" />
     <ClInclude Include="StackMachine\AdressArgs.h" />
     <ClInclude Include="StackMachine\CAST.h" />
     <ClInclude Include="StackMachine\CPAEQ.h" />
     <ClInclude Include="StackMachine\CPANEQ.h" />
     <ClInclude Include="StackMachine\DREF.h" />
+    <ClInclude Include="StackMachine\END.h" />
     <ClInclude Include="StackMachine\INC.h" />
     <ClInclude Include="StackMachine\JMP.h" />
     <ClInclude Include="StackMachine\JMPB.h" />
@@ -191,6 +210,8 @@
     <ClInclude Include="StackMachine\Print.h" />
     <ClInclude Include="StackMachine\PUSH.h" />
     <ClInclude Include="StackMachine\REF.h" />
+    <ClInclude Include="StackMachine\RunMachine.h" />
+    <ClInclude Include="StackMachine\SCAN.h" />
     <ClInclude Include="StackMachine\SPRINT.h" />
     <ClInclude Include="StackMachine\StackMachine.h" />
     <ClInclude Include="StackMachine\type.h" />
