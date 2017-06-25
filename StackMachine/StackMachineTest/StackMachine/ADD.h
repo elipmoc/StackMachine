@@ -3,7 +3,6 @@ template<typename type, typename AD>
 struct ADD :OrderBase
 {
 private:
-	
 	AD ad;
 	template<typename AD2>
 	void Do2();

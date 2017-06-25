@@ -65,6 +65,8 @@ public:
 	spt::qi::rule<Iterator, OrderBase*>DREF;
 	//CAST命令
 	spt::qi::rule<Iterator, OrderBase*>CAST;
+	//CALL命令
+	spt::qi::rule<Iterator, OrderBase*>CALL;
 	//実行命令
 	spt::qi::rule<Iterator, OrderBase*>Order;
 	//ラベル
@@ -87,6 +89,8 @@ public:
 	spt::qi::rule<Iterator, VarArgs()>Args;
 	//char形式
 	spt::qi::rule<Iterator, char()>Char;
+	//アドレス即値形式
+	spt::qi::rule<Iterator, int()>AdressValue;
 	//null文字
 	spt::qi::rule<Iterator, char()>NullChar;
 	//改行文字
@@ -132,8 +136,12 @@ void Script::ImplScript::InitRules() {
 	NullChar = lit("\\0")[_val = '\0'];
 	EndLineChar = lit("\\n")[_val = '\n'];
 	Char = lit('\'') >> (NullChar | EndLineChar | char_) - '\'' >> lit('\'');
+	AdressValue = lit('p') >> int_;
 	Value = strict_double | int_ | Char | bool_;
-	ValueAdr = Value[_val = BindValueAdr::Make(sm)] | String[_val = BindStringAdr::Make(sm)];
+	ValueAdr =
+		Value[_val = BindValueAdr::Make(sm)] |
+		String[_val = BindStringAdr::Make(sm)] |
+		AdressValue[_val=phx::bind([](int& hoge) {return (void*)hoge;},_1)];
 	DC =
 		(lit("idc") >> oneSpace >> Label >> zeroSpace >> lit('=') >> zeroSpace >> int_%',')[BindDCV::Make<int>(sm)] |
 		(lit("ddc") >> oneSpace >> Label >> zeroSpace >> lit('=') >> zeroSpace >> double_%',')[BindDCV::Make<double>(sm)] |
@@ -166,7 +174,7 @@ void Script::ImplScript::InitRules() {
 	Args3 = (Adr >> kanma >> Adr >> kanma >> Adr)[_val = BindArgs3::Make()];
 	Args4 = (Adr >> kanma >> Adr >> kanma >> Adr >> kanma >> Adr)[_val = BindArgs4::Make()];
 	Args = zeroSpace >> lit('(') >> zeroSpace >> (Args4 | Args3 | Args2 | Args1) >> zeroSpace >> lit(')');
-	Order = (END | PRINT | SCAN | ADD | LD | LDR | JMP | JMPB | CPAEQ | CPANEQ | INC | PUSH | POP | REF | DREF | CAST);
+	Order = (END | PRINT | SCAN | ADD | LD | LDR | JMP | JMPB | CPAEQ | CPANEQ | INC | PUSH | POP | REF | DREF | CAST|CALL);
 	JMP = lit("jmp") >> Args[_val = BindJMP::Make(sm)];
 	JMPB = lit("jmpb") >> Args[_val = BindJMPB::Make(sm)];
 	PRINT =
@@ -243,6 +251,7 @@ void Script::ImplScript::InitRules() {
 		(lit("ccastb") >> Args[_val = BindCAST<char, bool>::Make()]) |
 		(lit("bcastc") >> Args[_val = BindCAST<bool, char>::Make()]);
 	END = lit("end")[_val = BindEND::Make(sm)];
+	CALL = lit("call")>>Args[_val = BindCALL::Make(sm)];
 }
 
 RunMachine Script::CreateRunMachine() {

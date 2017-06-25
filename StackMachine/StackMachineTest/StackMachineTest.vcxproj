@@ -88,7 +88,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>C:\boost_1_62_0\boostLib\include\boost-1_62;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\boost_1_62_0\boostLib\include\boost-1_62;C:\Users\Owner\Source\Repos\StackMachine\StackMachine\StackMachineTest;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
       <MultiProcessorCompilation>false</MultiProcessorCompilation>
       <ForcedIncludeFiles>stdafx.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
@@ -161,6 +161,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
     </ClCompile>
+    <ClInclude Include="StackMachineBuilder\BindCALL.h" />
     <ClInclude Include="StackMachineBuilder\BindCAST.h" />
     <ClInclude Include="StackMachineBuilder\BindSCAN.h" />
     <ClInclude Include="StackMachineBuilder\TemplateInstantiation.h">
@@ -194,6 +195,7 @@
     <ClInclude Include="StackMachineCompiler.h" />
     <ClInclude Include="StackMachine\ADD.h" />
     <ClInclude Include="StackMachine\AdressArgs.h" />
+    <ClInclude Include="StackMachine\CALL.h" />
     <ClInclude Include="StackMachine\CAST.h" />
     <ClInclude Include="StackMachine\CPAEQ.h" />
     <ClInclude Include="StackMachine\CPANEQ.h" />
@@ -216,6 +218,9 @@
     <ClInclude Include="StackMachine\StackMachine.h" />
     <ClInclude Include="StackMachine\type.h" />
     <ClInclude Include="stdafx.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="test.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

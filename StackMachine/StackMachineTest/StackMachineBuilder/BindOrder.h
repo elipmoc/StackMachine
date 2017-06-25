@@ -2,7 +2,6 @@
 
 namespace phx = boost::phoenix;
 namespace spt = boost::spirit;
-
 #include "BindADD.h"
 #include "BindLD.h"
 #include "BindINC.h"
@@ -21,6 +20,7 @@ namespace spt = boost::spirit;
 #include "BindLDR.h"
 #include "BindCAST.h"
 #include "BindEND.h"
+#include "BindCALL.h"
 
 struct BindDCV {
 	StackMachine* sm;

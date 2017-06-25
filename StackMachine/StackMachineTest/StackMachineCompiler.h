@@ -1,6 +1,7 @@
 #pragma once
 #include "StackMachineBuilder\StackMachineBuilder.h"
 #include "StackMachine\StackMachine.h"
+
 class StackMachineCompiler {
 	Script script_parser;
 public:

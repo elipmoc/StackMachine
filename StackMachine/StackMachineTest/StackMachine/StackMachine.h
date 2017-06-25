@@ -188,6 +188,7 @@ public:
 #include "DREF.h"
 #include "LDR.h"
 #include "CAST.h"
+#include "CALL.h"
 #include "SCAN.h"
 #include "Print.h"
 #include "SPRINT.h"
