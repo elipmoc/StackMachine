@@ -182,6 +182,12 @@
     <ClInclude Include="StackMachineBuilder\BindCALL.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="StackMachine\RET.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="StackMachineBuilder\BindRET.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="test.txt" />

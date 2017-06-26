@@ -67,6 +67,8 @@ public:
 	spt::qi::rule<Iterator, OrderBase*>CAST;
 	//CALLñΩóﬂ
 	spt::qi::rule<Iterator, OrderBase*>CALL;
+	//RETñΩóﬂ
+	spt::qi::rule<Iterator, OrderBase*>RET;
 	//é¿çsñΩóﬂ
 	spt::qi::rule<Iterator, OrderBase*>Order;
 	//ÉâÉxÉã
@@ -174,7 +176,7 @@ void Script::ImplScript::InitRules() {
 	Args3 = (Adr >> kanma >> Adr >> kanma >> Adr)[_val = BindArgs3::Make()];
 	Args4 = (Adr >> kanma >> Adr >> kanma >> Adr >> kanma >> Adr)[_val = BindArgs4::Make()];
 	Args = zeroSpace >> lit('(') >> zeroSpace >> (Args4 | Args3 | Args2 | Args1) >> zeroSpace >> lit(')');
-	Order = (END | PRINT | SCAN | ADD | LD | LDR | JMP | JMPB | CPAEQ | CPANEQ | INC | PUSH | POP | REF | DREF | CAST|CALL);
+	Order = (END | PRINT | SCAN | ADD | LD | LDR | JMP | JMPB | CPAEQ | CPANEQ | INC | PUSH | POP | REF | DREF | CAST|CALL|RET);
 	JMP = lit("jmp") >> Args[_val = BindJMP::Make(sm)];
 	JMPB = lit("jmpb") >> Args[_val = BindJMPB::Make(sm)];
 	PRINT =
@@ -251,6 +253,7 @@ void Script::ImplScript::InitRules() {
 		(lit("ccastb") >> Args[_val = BindCAST<char, bool>::Make()]) |
 		(lit("bcastc") >> Args[_val = BindCAST<bool, char>::Make()]);
 	END = lit("end")[_val = BindEND::Make(sm)];
+	RET = lit("ret")[_val = BindRET::Make(sm)];
 	CALL = lit("call")>>Args[_val = BindCALL::Make(sm)];
 }
 

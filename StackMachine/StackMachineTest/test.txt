@@ -1,21 +1,17 @@
 idc A=8;
-idc B=2;
-idc CNT=0;
+idc B=12;
 
-LOOP    ipush(A);
+        ipush(A);
         ipush(B);
-        call(PLUS);
+        call(PLUS);//PLUS呼び出し
+        padd(sp,-8);//引数後処理
         ild(A,ax);
-        icpaneq(CNT,100000);
-        iinc(CNT);
-        iprint(A);
+        iprint(ax);
         cprint('\n');
-        jmpb(LOOP,ax);
         end;
 
-PLUS    ild(bp,sp);
-        ild(ax,0,p-8,bp);
-        iadd(ax,0,p-12,bp);
-        ild(gr1,0,p-4,bp);
-        padd(sp,-12);
-        jmp(gr1);
+//A+Bをする関数
+//戻り値はaxレジスタに保存
+PLUS    ild(ax,0,p-8,sp);//引数Aをaxに格納
+        iadd(ax,0,p-12,sp);//ax+=Bする
+        ret;

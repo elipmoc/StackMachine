@@ -23,7 +23,7 @@ private:
 	void Do2<Args<4>>()
 	{
 		if (*(bool*)(ad.GetAdr<3>()+*(int*)ad.GetAdr<4>()))
-			*sm.GetPR() = *(char**)(ad.GetAdr<1>() + *(int*)ad.GetAdr<2>()) - 4;
+			*sm.GetPR() = *(char**)(ad.GetAdr<1>() + *(int*)ad.GetAdr<2>());
 	};
 public:
 	virtual void Do() {

@@ -21,6 +21,7 @@ namespace spt = boost::spirit;
 #include "BindCAST.h"
 #include "BindEND.h"
 #include "BindCALL.h"
+#include "BindRET.h"
 
 struct BindDCV {
 	StackMachine* sm;

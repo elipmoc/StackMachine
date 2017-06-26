@@ -163,6 +163,7 @@
     </ClCompile>
     <ClInclude Include="StackMachineBuilder\BindCALL.h" />
     <ClInclude Include="StackMachineBuilder\BindCAST.h" />
+    <ClInclude Include="StackMachineBuilder\BindRET.h" />
     <ClInclude Include="StackMachineBuilder\BindSCAN.h" />
     <ClInclude Include="StackMachineBuilder\TemplateInstantiation.h">
       <FileType>CppCode</FileType>
@@ -212,6 +213,7 @@
     <ClInclude Include="StackMachine\Print.h" />
     <ClInclude Include="StackMachine\PUSH.h" />
     <ClInclude Include="StackMachine\REF.h" />
+    <ClInclude Include="StackMachine\RET.h" />
     <ClInclude Include="StackMachine\RunMachine.h" />
     <ClInclude Include="StackMachine\SCAN.h" />
     <ClInclude Include="StackMachine\SPRINT.h" />
