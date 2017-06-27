@@ -138,8 +138,8 @@ void Script::ImplScript::InitRules() {
 			|
 			(zeroSpace >> Comment)
 			);
-	oneSpace = +lit(' ');
-	zeroSpace = *lit(' ');
+	oneSpace = +(lit(' ')|lit('\t'));
+	zeroSpace = *(lit(' ')|lit('\t'));
 	kanma = zeroSpace >> lit(',') >> zeroSpace;
 	NullChar = lit("\\0")[_val = '\0'];
 	EndLineChar = lit("\\n")[_val = '\n'];

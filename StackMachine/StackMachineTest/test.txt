@@ -1,6 +1,8 @@
 idc A=8;
 idc B=8;
 
-        ixor(B,A);
-        iprint(B);
+		ixor(B,A);
+		iprint(B);
+        cprint('\n');
+        iprint(A);
         end;
