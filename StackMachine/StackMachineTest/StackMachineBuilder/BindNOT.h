@@ -1,23 +1,23 @@
 #pragma once
 template<typename type>
-struct BindINC :boost::static_visitor<OrderBase*> {
+struct BindNOT :boost::static_visitor<OrderBase*> {
 	template<class Args>
-	OrderBase* operator ()(Args)const {
+	OrderBase* operator ()(Args args)const {
 		throw std::string("errorArgs");
 	}
 	template<>
 	OrderBase* operator ()(Args<1> args)const {
-		return MakeINC(type(), args);
+		return MakeNOT(type(), args);
 	}
 	template<>
 	OrderBase* operator ()(Args<2> args)const {
-		return MakeINC(type(), args);
+		return MakeNOT(type(), args);
 	}
 
 	static OrderBase* _Make(VarArgs& va) {
-		return boost::apply_visitor(BindINC(), va);
+		return boost::apply_visitor(BindNOT(), va);
 	}
 	static auto Make() {
-		return phx::bind(&BindINC::_Make, spt::_1);
+		return phx::bind(&BindNOT::_Make, spt::_1);
 	}
 };

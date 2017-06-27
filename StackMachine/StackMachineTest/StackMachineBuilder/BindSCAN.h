@@ -3,7 +3,7 @@ template<typename type>
 struct BindSCAN :boost::static_visitor<OrderBase*> {
 	template<class Args>
 	OrderBase* operator ()(Args)const {
-		return nullptr;
+		throw std::string("errorArgs");
 	}
 	template<>
 	OrderBase* operator ()(Args<1> args)const {

@@ -51,6 +51,8 @@ public:
 	spt::qi::rule<Iterator, OrderBase*>OR;
 	//XOR–½—ß
 	spt::qi::rule<Iterator, OrderBase*>XOR;
+	//NOT–½—ß
+	spt::qi::rule<Iterator, OrderBase*>NOT;
 	//INC–½—ß
 	spt::qi::rule<Iterator, OrderBase*>INC;
 	//PUSH–½—ß
@@ -152,6 +154,7 @@ void Script::ImplScript::InitRules() {
 		AdressValue[_val=phx::bind([](int& hoge) {return (void*)hoge;},_1)];
 	DC =
 		(lit("idc") >> oneSpace >> Label >> zeroSpace >> lit('=') >> zeroSpace >> int_%',')[BindDCV::Make<int>(sm)] |
+		(lit("idc") >> oneSpace >> Label >> zeroSpace )[BindDS<int>::Make<int>(sm)] |
 		(lit("ddc") >> oneSpace >> Label >> zeroSpace >> lit('=') >> zeroSpace >> double_%',')[BindDCV::Make<double>(sm)] |
 		(lit("bdc") >> oneSpace >> Label >> zeroSpace >> lit('=') >> zeroSpace >> bool_%',')[BindDCV::Make<bool>(sm)] |
 		(lit("cdc") >> oneSpace >> Label >> zeroSpace >> lit('=') >> zeroSpace >> Char%',')[BindDCV::Make<char>(sm)] |
@@ -182,7 +185,7 @@ void Script::ImplScript::InitRules() {
 	Args3 = (Adr >> kanma >> Adr >> kanma >> Adr)[_val = BindArgs3::Make()];
 	Args4 = (Adr >> kanma >> Adr >> kanma >> Adr >> kanma >> Adr)[_val = BindArgs4::Make()];
 	Args = zeroSpace >> lit('(') >> zeroSpace >> (Args4 | Args3 | Args2 | Args1) >> zeroSpace >> lit(')');
-	Order = (END | PRINT | SCAN | ADD | LD | LDR | JMP | JMPB | CPAEQ | CPANEQ | INC | PUSH | POP | REF | DREF | CAST|CALL|RET|AND|OR|XOR);
+	Order = (END | PRINT | SCAN | ADD | LD | LDR | JMP | JMPB | CPAEQ | CPANEQ | INC | PUSH | POP | REF | DREF | CAST|CALL|RET|AND|OR|XOR|NOT);
 	JMP = lit("jmp") >> Args[_val = BindJMP::Make(sm)];
 	JMPB = lit("jmpb") >> Args[_val = BindJMPB::Make(sm)];
 	PRINT =
@@ -223,6 +226,10 @@ void Script::ImplScript::InitRules() {
 		(lit("ior") >> Args[_val = BindOR<int>::Make()]) |
 		(lit("cor") >> Args[_val = BindOR<char>::Make()]) |
 		(lit("bor") >> Args[_val = BindOR<bool>::Make()]);
+	NOT =
+		(lit("inot") >> Args[_val = BindNOT<int>::Make()]) |
+		(lit("cnot") >> Args[_val = BindNOT<char>::Make()]) |
+		(lit("bnot") >> Args[_val = BindNOT<bool>::Make()]);
 	PUSH =
 		(lit("ipush") >> Args[_val = BindPUSH<int>::Make(sm)]) |
 		(lit("dpush") >> Args[_val = BindPUSH<double>::Make(sm)]) |

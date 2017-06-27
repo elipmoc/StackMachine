@@ -48,7 +48,7 @@ public:
 	}
 	//GR(i)レジスタのアドレス
 	char* GetGR(int i) {
-		if (!(i >= 1 && i <= 8))throw "GetGR():範囲外です";
+		if (!(i >= 1 && i <= 8))throw std::string("GetGR():範囲外です");
 		return &Memory[20 + (i - 1) * 8];
 	};
 
@@ -73,8 +73,6 @@ public:
 			if (*GetPR() == endOrderAdr + 4)throw std::string("プログラムはENDで終わらず終了しました");	
 			*GetPR() += 4;
 			(*(OrderBase**)(*GetPR()-4))->Do();
-
-
 		}
 	}
 private:
@@ -139,7 +137,7 @@ public:
 	//DC命令。(即値,ラベル名)
 	template<typename T>
 	void DC(T t, std::string labelName) {
-		if (label.count(labelName) == 1)throw "ラベルが再定義されました";
+		if (label.count(labelName) == 1)throw std::string("ラベルが再定義されました");
 		T* tp=new (&Memory[usedIndex]) T;
 		*tp= t;
 		label[labelName] = &Memory[usedIndex];
@@ -150,7 +148,7 @@ public:
 	//配列DCV命令。(vector{即値,即値,即値,即値....},ラベル名)
 	template<typename T>
 	void DCV(std::vector<T> t, std::string labelName) {
-		if (label.count(labelName) == 1)throw "ラベルが再定義されました";
+		if (label.count(labelName) == 1)throw std::string("ラベルが再定義されました");
 		label[labelName] = &Memory[usedIndex];
 		for (auto it = t.begin(); it != t.end(); it++) {
 			T* tp = new (&Memory[usedIndex]) T;
@@ -160,7 +158,7 @@ public:
 	};
 	//DS命令。(即値,ラベル名)
 	void DS(int size, std::string labelName) {
-		if (label.count(labelName) == 1)throw "ラベルが再定義されました";
+		if (label.count(labelName) == 1)throw std::string("ラベルが再定義されました");
 		label[labelName] = &Memory[usedIndex];
 		usedIndex += size;
 	};
@@ -183,6 +181,7 @@ public:
 #include "AND.h"
 #include "OR.h"
 #include "XOR.h"
+#include "NOT.h"
 #include "CPAEQ.h"
 #include "CPANEQ.h"
 #include "JMPB.h"

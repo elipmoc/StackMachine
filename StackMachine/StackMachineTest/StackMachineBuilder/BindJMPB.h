@@ -4,7 +4,7 @@ struct BindJMPB :boost::static_visitor<OrderBase*> {
 	BindJMPB(StackMachine* sm) :sm(sm) {}
 	template<class Args>
 	OrderBase* operator ()(Args)const {
-		return nullptr;
+		throw std::string("errorArgs");
 	}
 	template<>
 	OrderBase* operator ()(Args<2> args)const {

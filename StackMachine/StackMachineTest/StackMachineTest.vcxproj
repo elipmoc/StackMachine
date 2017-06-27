@@ -164,6 +164,7 @@
     <ClInclude Include="StackMachineBuilder\BindAND.h" />
     <ClInclude Include="StackMachineBuilder\BindCALL.h" />
     <ClInclude Include="StackMachineBuilder\BindCAST.h" />
+    <ClInclude Include="StackMachineBuilder\BindNOT.h" />
     <ClInclude Include="StackMachineBuilder\BindOR.h" />
     <ClInclude Include="StackMachineBuilder\BindRET.h" />
     <ClInclude Include="StackMachineBuilder\BindSCAN.h" />
@@ -211,6 +212,8 @@
     <ClInclude Include="StackMachine\JMPB.h" />
     <ClInclude Include="StackMachine\LD.h" />
     <ClInclude Include="StackMachine\LDR.h" />
+    <ClInclude Include="StackMachine\MUL.h" />
+    <ClInclude Include="StackMachine\NOT.h" />
     <ClInclude Include="StackMachine\OR.h" />
     <ClInclude Include="StackMachine\Order.h" />
     <ClInclude Include="StackMachine\OrderVector.h" />

@@ -4,7 +4,9 @@ struct BindPUSH :boost::static_visitor<OrderBase*> {
 	StackMachine* sm;
 public: BindPUSH(StackMachine* sm) :sm(sm) {}
 		template<class Args>
-		OrderBase* operator ()(Args)const { throw std::string("errorArgs  "); };
+		OrderBase* operator ()(Args)const {
+			throw std::string("errorArgs");
+		};
 		template<>
 		OrderBase* operator ()(Args<1> args)const {
 			return MakePUSH(type(), args, *sm);

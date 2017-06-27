@@ -10,18 +10,22 @@ void main() {
 	while (ifs&&std::getline(ifs, buf)) {
 		lineCount++;
 		 try {
+
 			 smc.Compile(
 				 buf
 			 );
+			 
+
+
 		 }
 		 catch (std::string str) {
-			 std::cout << str<<"Line:"<<lineCount<<std::endl<<std::endl;
+			 std::cout << str<<std::endl<<"Line:"<<lineCount<<std::endl<<std::endl;
 			 std::cout<<"   " <<'"'<< buf <<'"'<< std::endl<<std::endl;
 			 return;
 		 }
 	}
+		smc.Run();
 
-	smc.Run();
 	/*///スタックマシン用意
 	StackMachine sm;
 	///定数確保///

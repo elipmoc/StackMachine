@@ -6,6 +6,7 @@ namespace spt = boost::spirit;
 #include "BindAND.h"
 #include "BindOR.h"
 #include "BindXOR.h"
+#include "BindNOT.h"
 #include "BindLD.h"
 #include "BindINC.h"
 #include "BindPOP.h"
@@ -41,6 +42,24 @@ struct BindDCV {
 	template< typename T>
 	static auto Make(StackMachine& sm) {
 		return phx::bind(&BindDCV::_Make<T>,&sm,spt::_1,spt::_2);
+	}
+};
+
+template<class T>
+struct BindDS {
+	StackMachine* sm;
+	std::string label;
+	BindDS(StackMachine* sm, std::string label) :sm(sm), label(label) {}
+	void operator ()()const {
+		sm->DS(sizeof(T),label);
+	}
+	template< typename T>
+	static void _Make(StackMachine* sm, std::string label) {
+		BindDS<T>(sm, label)();
+	}
+	template< typename T>
+	static auto Make(StackMachine& sm) {
+		return phx::bind(&BindDS::_Make<T>, &sm, spt::_1);
 	}
 };
 
