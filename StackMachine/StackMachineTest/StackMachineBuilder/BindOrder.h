@@ -3,6 +3,9 @@
 namespace phx = boost::phoenix;
 namespace spt = boost::spirit;
 #include "BindADD.h"
+#include "BindAND.h"
+#include "BindOR.h"
+#include "BindXOR.h"
 #include "BindLD.h"
 #include "BindINC.h"
 #include "BindPOP.h"

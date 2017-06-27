@@ -45,6 +45,12 @@ public:
 	spt::qi::rule<Iterator, OrderBase*>LDR;
 	//ADD–½—ß
 	spt::qi::rule<Iterator, OrderBase*>ADD;
+	//AND–½—ß
+	spt::qi::rule<Iterator, OrderBase*>AND;
+	//OR–½—ß
+	spt::qi::rule<Iterator, OrderBase*>OR;
+	//XOR–½—ß
+	spt::qi::rule<Iterator, OrderBase*>XOR;
 	//INC–½—ß
 	spt::qi::rule<Iterator, OrderBase*>INC;
 	//PUSH–½—ß
@@ -176,7 +182,7 @@ void Script::ImplScript::InitRules() {
 	Args3 = (Adr >> kanma >> Adr >> kanma >> Adr)[_val = BindArgs3::Make()];
 	Args4 = (Adr >> kanma >> Adr >> kanma >> Adr >> kanma >> Adr)[_val = BindArgs4::Make()];
 	Args = zeroSpace >> lit('(') >> zeroSpace >> (Args4 | Args3 | Args2 | Args1) >> zeroSpace >> lit(')');
-	Order = (END | PRINT | SCAN | ADD | LD | LDR | JMP | JMPB | CPAEQ | CPANEQ | INC | PUSH | POP | REF | DREF | CAST|CALL|RET);
+	Order = (END | PRINT | SCAN | ADD | LD | LDR | JMP | JMPB | CPAEQ | CPANEQ | INC | PUSH | POP | REF | DREF | CAST|CALL|RET|AND|OR|XOR);
 	JMP = lit("jmp") >> Args[_val = BindJMP::Make(sm)];
 	JMPB = lit("jmpb") >> Args[_val = BindJMPB::Make(sm)];
 	PRINT =
@@ -205,6 +211,18 @@ void Script::ImplScript::InitRules() {
 		(lit("dadd") >> Args[_val = BindADD<double>::Make()]) |
 		(lit("cadd") >> Args[_val = BindADD<char>::Make()]) |
 		(lit("padd") >> Args[_val = BindADD<char*>::Make()]);
+	AND=
+		(lit("iand") >> Args[_val = BindAND<int>::Make()]) |
+		(lit("cand") >> Args[_val = BindAND<char>::Make()]) |
+		(lit("band") >> Args[_val = BindAND<bool>::Make()]);
+	XOR =
+		(lit("ixor") >> Args[_val = BindXOR<int>::Make()]) |
+		(lit("cxor") >> Args[_val = BindXOR<char>::Make()]) |
+		(lit("bxor") >> Args[_val = BindXOR<bool>::Make()]);
+	OR =
+		(lit("ior") >> Args[_val = BindOR<int>::Make()]) |
+		(lit("cor") >> Args[_val = BindOR<char>::Make()]) |
+		(lit("bor") >> Args[_val = BindOR<bool>::Make()]);
 	PUSH =
 		(lit("ipush") >> Args[_val = BindPUSH<int>::Make(sm)]) |
 		(lit("dpush") >> Args[_val = BindPUSH<double>::Make(sm)]) |

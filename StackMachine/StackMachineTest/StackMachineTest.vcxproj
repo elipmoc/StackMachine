@@ -161,10 +161,13 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
     </ClCompile>
+    <ClInclude Include="StackMachineBuilder\BindAND.h" />
     <ClInclude Include="StackMachineBuilder\BindCALL.h" />
     <ClInclude Include="StackMachineBuilder\BindCAST.h" />
+    <ClInclude Include="StackMachineBuilder\BindOR.h" />
     <ClInclude Include="StackMachineBuilder\BindRET.h" />
     <ClInclude Include="StackMachineBuilder\BindSCAN.h" />
+    <ClInclude Include="StackMachineBuilder\BindXOR.h" />
     <ClInclude Include="StackMachineBuilder\TemplateInstantiation.h">
       <FileType>CppCode</FileType>
     </ClInclude>
@@ -196,6 +199,7 @@
     <ClInclude Include="StackMachineCompiler.h" />
     <ClInclude Include="StackMachine\ADD.h" />
     <ClInclude Include="StackMachine\AdressArgs.h" />
+    <ClInclude Include="StackMachine\AND.h" />
     <ClInclude Include="StackMachine\CALL.h" />
     <ClInclude Include="StackMachine\CAST.h" />
     <ClInclude Include="StackMachine\CPAEQ.h" />
@@ -207,6 +211,7 @@
     <ClInclude Include="StackMachine\JMPB.h" />
     <ClInclude Include="StackMachine\LD.h" />
     <ClInclude Include="StackMachine\LDR.h" />
+    <ClInclude Include="StackMachine\OR.h" />
     <ClInclude Include="StackMachine\Order.h" />
     <ClInclude Include="StackMachine\OrderVector.h" />
     <ClInclude Include="StackMachine\POP.h" />
@@ -219,6 +224,7 @@
     <ClInclude Include="StackMachine\SPRINT.h" />
     <ClInclude Include="StackMachine\StackMachine.h" />
     <ClInclude Include="StackMachine\type.h" />
+    <ClInclude Include="StackMachine\XOR.h" />
     <ClInclude Include="stdafx.h" />
   </ItemGroup>
   <ItemGroup>

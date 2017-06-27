@@ -1,17 +1,6 @@
 idc A=8;
-idc B=12;
+idc B=8;
 
-        ipush(A);
-        ipush(B);
-        call(PLUS);//PLUS呼び出し
-        padd(sp,-8);//引数後処理
-        ild(A,ax);
-        iprint(ax);
-        cprint('\n');
+        ixor(B,A);
+        iprint(B);
         end;
-
-//A+Bをする関数
-//戻り値はaxレジスタに保存
-PLUS    ild(ax,0,p-8,sp);//引数Aをaxに格納
-        iadd(ax,0,p-12,sp);//ax+=Bする
-        ret;
