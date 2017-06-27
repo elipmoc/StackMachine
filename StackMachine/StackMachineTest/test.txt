@@ -1,6 +1,5 @@
 
-idc A=15,13;
-		inot(A,4);
-		iinc(A,4);
-		iprint(A,4);
+ddc A=0.2,0.5;
+		dmul(A,0,A,8);
+		dprint(A);
 		end;

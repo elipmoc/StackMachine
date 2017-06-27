@@ -164,6 +164,7 @@
     <ClInclude Include="StackMachineBuilder\BindAND.h" />
     <ClInclude Include="StackMachineBuilder\BindCALL.h" />
     <ClInclude Include="StackMachineBuilder\BindCAST.h" />
+    <ClInclude Include="StackMachineBuilder\BindMUL.h" />
     <ClInclude Include="StackMachineBuilder\BindNOT.h" />
     <ClInclude Include="StackMachineBuilder\BindOR.h" />
     <ClInclude Include="StackMachineBuilder\BindRET.h" />

@@ -45,6 +45,8 @@ public:
 	spt::qi::rule<Iterator, OrderBase*>LDR;
 	//ADD–½—ß
 	spt::qi::rule<Iterator, OrderBase*>ADD;
+	//MUL–½—ß
+	spt::qi::rule<Iterator, OrderBase*>MUL;
 	//AND–½—ß
 	spt::qi::rule<Iterator, OrderBase*>AND;
 	//OR–½—ß
@@ -185,7 +187,7 @@ void Script::ImplScript::InitRules() {
 	Args3 = (Adr >> kanma >> Adr >> kanma >> Adr)[_val = BindArgs3::Make()];
 	Args4 = (Adr >> kanma >> Adr >> kanma >> Adr >> kanma >> Adr)[_val = BindArgs4::Make()];
 	Args = zeroSpace >> lit('(') >> zeroSpace >> (Args4 | Args3 | Args2 | Args1) >> zeroSpace >> lit(')');
-	Order = (END | PRINT | SCAN | ADD | LD | LDR | JMP | JMPB | CPAEQ | CPANEQ | INC | PUSH | POP | REF | DREF | CAST|CALL|RET|AND|OR|XOR|NOT);
+	Order = (END | PRINT | SCAN | ADD| MUL | LD | LDR | JMP | JMPB | CPAEQ | CPANEQ | INC | PUSH | POP | REF | DREF | CAST|CALL|RET|AND|OR|XOR|NOT);
 	JMP = lit("jmp") >> Args[_val = BindJMP::Make(sm)];
 	JMPB = lit("jmpb") >> Args[_val = BindJMPB::Make(sm)];
 	PRINT =
@@ -214,6 +216,10 @@ void Script::ImplScript::InitRules() {
 		(lit("dadd") >> Args[_val = BindADD<double>::Make()]) |
 		(lit("cadd") >> Args[_val = BindADD<char>::Make()]) |
 		(lit("padd") >> Args[_val = BindADD<char*>::Make()]);
+	MUL =
+		(lit("imul") >> Args[_val = BindMUL<int>::Make()]) |
+		(lit("dmul") >> Args[_val = BindMUL<double>::Make()]) |
+		(lit("cmul") >> Args[_val = BindMUL<char>::Make()]);
 	AND=
 		(lit("iand") >> Args[_val = BindAND<int>::Make()]) |
 		(lit("cand") >> Args[_val = BindAND<char>::Make()]) |

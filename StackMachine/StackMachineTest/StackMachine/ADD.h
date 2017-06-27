@@ -56,15 +56,6 @@ public:
 	};
 	ADD(AD ad) :ad(ad) {}
 };
-
-template<typename AD>
-struct ADD<bool, AD> :OrderBase
-{
-public:
-	virtual void Do(){};
-	ADD(AD ad) { throw std::string("not expect ADD<bool>"); }
-};
-
 template<typename Type,typename AD>
 auto MakeADD(Type, AD ad)
 {

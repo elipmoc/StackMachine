@@ -178,6 +178,7 @@ public:
 #include "JMP.h"
 #include "END.h"
 #include "ADD.h"
+#include "MUL.h"
 #include "AND.h"
 #include "OR.h"
 #include "XOR.h"
