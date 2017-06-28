@@ -1,5 +1,12 @@
 
-ddc A=0.2,0.5;
-		dmul(A,0,A,8);
-		dprint(A);
+idc A=27,5; /* int A[]={27,5}; */
+idc B=27,3; /* int B[]={27,3}; */
+
+		imod(A,0,A,4); /* A[0]%=A[1]; */
+		idiv(B,0,B,4); /* b[0]/=B[1]; */
+
+		/*A[0]‚ÆB[0]‚ð•\Ž¦*/
+		iprint(A);
+		cprint('\n');
+		iprint(B);
 		end;

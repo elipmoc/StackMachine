@@ -179,6 +179,8 @@ public:
 #include "END.h"
 #include "ADD.h"
 #include "MUL.h"
+#include "DIV.h"
+#include "MOD.h"
 #include "AND.h"
 #include "OR.h"
 #include "XOR.h"

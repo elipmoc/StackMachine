@@ -164,6 +164,8 @@
     <ClInclude Include="StackMachineBuilder\BindAND.h" />
     <ClInclude Include="StackMachineBuilder\BindCALL.h" />
     <ClInclude Include="StackMachineBuilder\BindCAST.h" />
+    <ClInclude Include="StackMachineBuilder\BindDIV.h" />
+    <ClInclude Include="StackMachineBuilder\BindMOD.h" />
     <ClInclude Include="StackMachineBuilder\BindMUL.h" />
     <ClInclude Include="StackMachineBuilder\BindNOT.h" />
     <ClInclude Include="StackMachineBuilder\BindOR.h" />
@@ -206,6 +208,7 @@
     <ClInclude Include="StackMachine\CAST.h" />
     <ClInclude Include="StackMachine\CPAEQ.h" />
     <ClInclude Include="StackMachine\CPANEQ.h" />
+    <ClInclude Include="StackMachine\DIV.h" />
     <ClInclude Include="StackMachine\DREF.h" />
     <ClInclude Include="StackMachine\END.h" />
     <ClInclude Include="StackMachine\INC.h" />
@@ -213,6 +216,7 @@
     <ClInclude Include="StackMachine\JMPB.h" />
     <ClInclude Include="StackMachine\LD.h" />
     <ClInclude Include="StackMachine\LDR.h" />
+    <ClInclude Include="StackMachine\MOD.h" />
     <ClInclude Include="StackMachine\MUL.h" />
     <ClInclude Include="StackMachine\NOT.h" />
     <ClInclude Include="StackMachine\OR.h" />
