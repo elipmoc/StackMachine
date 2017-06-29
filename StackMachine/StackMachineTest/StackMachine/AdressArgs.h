@@ -1,6 +1,7 @@
 #pragma once
 #include <array>
 #include <tuple>
+#include <utility>
 //命令に渡すアドレス構造体定義<引数の数>
 template<int N>
 struct  AdressArgs {
@@ -75,15 +76,15 @@ template<int N>
 using Args = AdressArgs<N>;
 
 //AdressArgs生成関数
-template<class ..._Args>
-auto Make_Arags(_Args... args) {
-	return AdressArgs<sizeof...(_Args)>({ args... });
+template<class ...Args_>
+auto Make_Arags(Args_&&... args) {
+	return AdressArgs<sizeof...(Args_)>({ std::forward<Args_>(args)... });
 }
-template<class ..._Args>
-auto Make_Arags_for_tuple(std::tuple<_Args...> tuple) {
-	return _Make_Arags_for_tuple (tuple, std::make_index_sequence<sizeof...(_Args)>());
+template<class ...Args_>
+auto Make_Arags_for_tuple(const std::tuple<Args_...>& tuple) {
+	return Make_Arags_for_tuple_impl (tuple, std::make_index_sequence<sizeof...(Args_)>());
 }
-template<size_t ...index,class ..._Args>
-auto _Make_Arags_for_tuple(std::tuple<_Args...> tuple,std::index_sequence<index...>) {
+template<size_t ...index,class ...Args_>
+auto Make_Arags_for_tuple_impl(const std::tuple<Args_...>& tuple,std::index_sequence<index...>) {
 	return AdressArgs<sizeof...(index)>({ (std::get<index>(tuple))... });
 }
