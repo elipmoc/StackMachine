@@ -2,7 +2,7 @@
 template<typename type1,typename type2>
 struct BindCAST :boost::static_visitor<OrderBase*> {
 	OrderBase* operator ()(Args<1> args)const {
-		throw std::string("errorArgs"); return nullptr;
+		throw std::string("errorArgs");
 	}
 	OrderBase* operator ()(Args<2> args)const {
 		return MakeCAST(type1(),type2(), args);
