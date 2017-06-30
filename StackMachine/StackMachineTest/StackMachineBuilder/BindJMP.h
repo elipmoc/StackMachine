@@ -2,15 +2,12 @@
 struct BindJMP :boost::static_visitor<OrderBase*> {
 	StackMachine* sm;
 	BindJMP(StackMachine* sm) :sm(sm) {}
-	template<class Args>
-	OrderBase* operator ()(Args)const {
+	OrderBase* operator ()(...)const {
 		throw std::string("errorArgs");
 	}
-	template<>
 	OrderBase* operator ()(Args<1> args)const {
 		return MakeJMP(args, *sm);
 	}
-	template<>
 	OrderBase* operator ()(Args<2> args)const {
 		return MakeJMP(args, *sm);
 	}

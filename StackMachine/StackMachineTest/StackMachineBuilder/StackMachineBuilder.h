@@ -4,7 +4,7 @@
 namespace VirtualMachine {
 	class RunMachine;
 }
-namespace StackMachineBuilder {
+namespace VirtualMachineBuilder {
 	struct Script
 	{
 		Script();

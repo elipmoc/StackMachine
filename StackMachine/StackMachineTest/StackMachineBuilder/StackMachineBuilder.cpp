@@ -1,10 +1,10 @@
+#include "StackMachineBuilder.h"
 #include "StackMachine.h"
 #include "CustomVariant.h"
 #include "BindOrder.h"
-#include "StackMachineBuilder.h"
 #include "TemplateInstantiation.h"
 
-namespace StackMachineBuilder {
+namespace VirtualMachineBuilder {
 	using Iterator = std::string::iterator;
 
 	struct Script::ImplScript :spt::qi::grammar<Iterator> {

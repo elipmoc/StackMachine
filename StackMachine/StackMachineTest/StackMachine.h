@@ -11,11 +11,7 @@ namespace VirtualMachine {
 	#include "StackMachine/Order.h"
 	#include "StackMachine/OrderVector.h"
 	#include "StackMachine/StackMachine.h"
-}
-
-#include "StackMachine/RunMachine.h"
-
-namespace VirtualMachine {
+	#include "StackMachine/RunMachine.h"
 	#include "StackMachine/PUSH.h"
 	#include "StackMachine/POP.h"
 	#include "StackMachine/LD.h"

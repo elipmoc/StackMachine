@@ -1,18 +1,14 @@
 #pragma once
 struct BindREF :boost::static_visitor<OrderBase*> {
-	template<class Args>
-	OrderBase* operator ()(Args)const {
+	OrderBase* operator ()(...)const {
 		throw std::string("errorArgs");
 	}
-	template<>
 	OrderBase* operator ()(Args<2> args)const {
 		return MakeREF(args);
 	}
-	template<>
 	OrderBase* operator ()(Args<3> args)const {
 		return MakeREF(args);
 	}
-	template<>
 	OrderBase* operator ()(Args<4> args)const {
 		return MakeREF(args);
 	}

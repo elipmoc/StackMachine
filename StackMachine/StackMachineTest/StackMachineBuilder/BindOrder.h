@@ -1,5 +1,5 @@
 #pragma once
-namespace StackMachineBuilder {
+namespace VirtualMachineBuilder {
 	namespace phx = boost::phoenix;
 	namespace spt = boost::spirit;
 #include "BindADD.h"

@@ -1,4 +1,4 @@
-namespace StackMachineBuilder {
+namespace VirtualMachineBuilder {
 	template struct BindCPANEQ<int>;
 	template struct BindCPANEQ<char>;
 	template struct BindCPANEQ<double>;

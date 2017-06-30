@@ -3,7 +3,7 @@
 #include "StackMachine.h"
 
 class StackMachineCompiler {
-	StackMachineBuilder::Script script_parser;
+	VirtualMachineBuilder::Script script_parser;
 public:
 	void Run() {
 		script_parser.CreateRunMachine().Run();
