@@ -1,19 +1,15 @@
 #pragma once
 template<typename type>
 struct BindLDR :boost::static_visitor<OrderBase*> {
-	template<class Args>
-	OrderBase* operator ()(Args)const {
+	OrderBase* operator ()(...)const {
 		throw std::string("errorArgs");
 	}
-	template<>
 	OrderBase* operator ()(Args<2> args)const {
 		return MakeLDR(type(), args);
 	}
-	template<>
 	OrderBase* operator ()(Args<3> args)const {
 		return MakeLDR(type(), args);
 	}
-	template<>
 	OrderBase* operator ()(Args<4> args)const {
 		return MakeLDR(type(), args);
 	}

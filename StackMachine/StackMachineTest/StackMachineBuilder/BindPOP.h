@@ -3,15 +3,12 @@ template<typename type>
 struct BindPOP :boost::static_visitor<OrderBase*> {
 	StackMachine* sm;
 public: BindPOP(StackMachine* sm) :sm(sm) {}
-		template<class Args>
-		OrderBase* operator ()(Args)const {
+		OrderBase* operator ()(...)const {
 			throw std::string("errorArgs");
 		}
-		template<>
 		OrderBase* operator ()(Args<1> args)const {
 			return MakePOP(type(), args, *sm);
 		}
-		template<>
 		OrderBase* operator ()(Args<2> args)const {
 			return MakePOP(type(), args, *sm);
 		}

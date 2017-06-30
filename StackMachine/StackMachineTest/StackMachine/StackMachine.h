@@ -1,13 +1,5 @@
 #pragma once
-#include "AdressArgs.h"
-#include "type.h"
-#include "Order.h"
-#include <iostream>
-#include <map>
-#include <string>
-#include <vector>
-#include "OrderVector.h"
-#include <type_traits>
+
 
 //スタックマシン
 class StackMachine {
@@ -84,7 +76,7 @@ private:
 		usedIndex += 4;
 	};
 public:
-	//即値命令
+	//即値ラベル生成命令
 	void* ValueLabel(int t) {
 		if (ilabel.count(t) == 1)return ilabel[t];
 		int* tp = new (&Memory[usedIndex]) int;
@@ -172,30 +164,3 @@ public:
 };
 
 
-#include "PUSH.h"
-#include "POP.h"
-#include "LD.h"
-#include "JMP.h"
-#include "END.h"
-#include "ADD.h"
-#include "MUL.h"
-#include "DIV.h"
-#include "MOD.h"
-#include "AND.h"
-#include "OR.h"
-#include "XOR.h"
-#include "NOT.h"
-#include "CPAEQ.h"
-#include "CPANEQ.h"
-#include "JMPB.h"
-#include "INC.h"
-#include "REF.h"
-#include "DREF.h"
-#include "LDR.h"
-#include "CAST.h"
-#include "CALL.h"
-#include "RET.h"
-#include "SCAN.h"
-#include "Print.h"
-#include "SPRINT.h"
-#include "RunMachine.h"

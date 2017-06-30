@@ -15,8 +15,6 @@ void main() {
 				 buf
 			 );
 			 
-
-
 		 }
 		 catch (std::string str) {
 			 std::cout << str<<std::endl<<"Line:"<<lineCount<<std::endl<<std::endl;

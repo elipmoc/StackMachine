@@ -3,19 +3,15 @@ template<typename type>
 struct BindCPAEQ :boost::static_visitor<OrderBase*> {
 	StackMachine* sm;
 	BindCPAEQ(StackMachine* sm) :sm(sm) {}
-	template<class Args>
-	OrderBase* operator ()(Args)const {
+	OrderBase* operator ()(...)const {
 		throw std::string("errorArgs");
 	}
-	template<>
 	OrderBase* operator ()(Args<2> args)const {
 		return MakeCPAEQ(type(), args, *sm);
 	}
-	template<>
 	OrderBase* operator ()(Args<3> args)const {
 		return MakeCPAEQ(type(), args, *sm);
 	}
-	template<>
 	OrderBase* operator ()(Args<4> args)const {
 		return MakeCPAEQ(type(), args, *sm);
 	}

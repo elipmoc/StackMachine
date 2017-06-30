@@ -4,13 +4,12 @@ struct BindCALL :boost::static_visitor<OrderBase*> {
 	StackMachine* sm;
 public:
 	BindCALL(StackMachine* sm) :sm(sm) {}
-	template<class Args>
-	OrderBase* operator ()(Args)const { throw std::string("errorArgs"); };
-	template<>
+	OrderBase* operator ()(...)const { 
+		throw std::string("errorArgs");
+	};
 	OrderBase* operator ()(Args<1> args)const {
 		return MakeCALL(args, *sm);
 	}
-	template<>
 	OrderBase* operator ()(Args<2> args)const {
 		return MakeCALL(args, *sm);
 	}

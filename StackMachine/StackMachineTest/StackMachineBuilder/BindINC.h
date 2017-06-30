@@ -1,15 +1,12 @@
 #pragma once
 template<typename type>
 struct BindINC :boost::static_visitor<OrderBase*> {
-	template<class Args>
-	OrderBase* operator ()(Args)const {
+	OrderBase* operator ()(...)const {
 		throw std::string("errorArgs");
 	}
-	template<>
 	OrderBase* operator ()(Args<1> args)const {
 		return MakeINC(type(), args);
 	}
-	template<>
 	OrderBase* operator ()(Args<2> args)const {
 		return MakeINC(type(), args);
 	}
