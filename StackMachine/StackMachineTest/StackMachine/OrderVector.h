@@ -20,7 +20,7 @@ inline OrderVector& operator<<(OrderVector& ov, OrderBase* ob) {
 	return ov;
 }
 inline OrderVector& operator<<(OrderVector& ov, std::string _label) {
-	if (__label != "")throw std::string("label‚ð“ü‚ê‚½‚ ‚Æ‚ÍOrderBase*‚ð“ü‚ê‚Ä‰º‚³‚¢");
+	if (__label != "")throw "label‚ð“ü‚ê‚½‚ ‚Æ‚ÍOrderBase*‚ð“ü‚ê‚Ä‰º‚³‚¢";
 	__label = _label;
 	return ov;
 }

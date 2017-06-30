@@ -146,6 +146,9 @@
     <ClInclude Include="StackMachine\StackMachine.h">
       <Filter>ヘッダー ファイル\StackMachine</Filter>
     </ClInclude>
+    <ClInclude Include="StackMachine\type.h">
+      <Filter>ヘッダー ファイル\StackMachine</Filter>
+    </ClInclude>
     <ClInclude Include="stdafx.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
@@ -225,12 +228,6 @@
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="StackMachineBuilder\BindMOD.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="StackMachine.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="StackMachineBuilder.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>

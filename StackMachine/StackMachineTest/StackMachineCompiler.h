@@ -1,9 +1,9 @@
 #pragma once
-#include "StackMachineBuilder.h"
-#include "StackMachine.h"
+#include "StackMachineBuilder\StackMachineBuilder.h"
+#include "StackMachine\StackMachine.h"
 
 class StackMachineCompiler {
-	StackMachineBuilder::Script script_parser;
+	Script script_parser;
 public:
 	void Run() {
 		script_parser.CreateRunMachine().Run();

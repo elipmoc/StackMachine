@@ -1,4 +1,5 @@
 #pragma once
+#pragma once
 template<typename type, typename AD>
 struct MUL :OrderBase
 {

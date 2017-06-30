@@ -161,7 +161,6 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
     </ClCompile>
-    <ClInclude Include="StackMachineBuilder.h" />
     <ClInclude Include="StackMachineBuilder\BindAND.h" />
     <ClInclude Include="StackMachineBuilder\BindCALL.h" />
     <ClInclude Include="StackMachineBuilder\BindCAST.h" />
@@ -173,7 +172,6 @@
     <ClInclude Include="StackMachineBuilder\BindRET.h" />
     <ClInclude Include="StackMachineBuilder\BindSCAN.h" />
     <ClInclude Include="StackMachineBuilder\BindXOR.h" />
-    <ClInclude Include="StackMachine.h" />
     <ClInclude Include="StackMachineBuilder\TemplateInstantiation.h">
       <FileType>CppCode</FileType>
     </ClInclude>
@@ -233,6 +231,7 @@
     <ClInclude Include="StackMachine\SCAN.h" />
     <ClInclude Include="StackMachine\SPRINT.h" />
     <ClInclude Include="StackMachine\StackMachine.h" />
+    <ClInclude Include="StackMachine\type.h" />
     <ClInclude Include="StackMachine\XOR.h" />
     <ClInclude Include="stdafx.h" />
   </ItemGroup>
