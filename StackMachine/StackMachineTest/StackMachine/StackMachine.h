@@ -50,11 +50,14 @@ public:
 	};
 	//命令格納
 	void SetOrderVector(OrderVector orders) {
-		//はじめの命令のポインタが格納されてるポインタを保存
+		//はじめの命令のポインタをPRレジスタにセット
 		*GetPR() = &Memory[usedIndex];
+
+		//for文で命令をスタックに詰めていく
 		for (size_t i = 0; i < orders.size(); i++) {
 			AddOrder(orders[i]);
 		}
+		//一番最後尾の命令のポインタを保存
 		endOrderAdr = &Memory[usedIndex - 4];
 	}
 	//実行
