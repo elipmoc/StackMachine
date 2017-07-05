@@ -35,9 +35,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="StackMachineBuilder\BindADD.h">
-      <Filter>ヘッダー ファイル\StackMachineBuilder</Filter>
-    </ClInclude>
     <ClInclude Include="StackMachineBuilder\BindArges.h">
       <Filter>ヘッダー ファイル\StackMachineBuilder</Filter>
     </ClInclude>
@@ -47,9 +44,6 @@
     <ClInclude Include="StackMachineBuilder\BindCPANEQ.h">
       <Filter>ヘッダー ファイル\StackMachineBuilder</Filter>
     </ClInclude>
-    <ClInclude Include="StackMachineBuilder\BindDREF.h">
-      <Filter>ヘッダー ファイル\StackMachineBuilder</Filter>
-    </ClInclude>
     <ClInclude Include="StackMachineBuilder\BindINC.h">
       <Filter>ヘッダー ファイル\StackMachineBuilder</Filter>
     </ClInclude>
@@ -57,12 +51,6 @@
       <Filter>ヘッダー ファイル\StackMachineBuilder</Filter>
     </ClInclude>
     <ClInclude Include="StackMachineBuilder\BindJMPB.h">
-      <Filter>ヘッダー ファイル\StackMachineBuilder</Filter>
-    </ClInclude>
-    <ClInclude Include="StackMachineBuilder\BindLD.h">
-      <Filter>ヘッダー ファイル\StackMachineBuilder</Filter>
-    </ClInclude>
-    <ClInclude Include="StackMachineBuilder\BindLDR.h">
       <Filter>ヘッダー ファイル\StackMachineBuilder</Filter>
     </ClInclude>
     <ClInclude Include="StackMachineBuilder\BindOrder.h">
@@ -188,19 +176,10 @@
     <ClInclude Include="StackMachine\AND.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="StackMachineBuilder\BindAND.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="StackMachine\OR.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="StackMachineBuilder\BindOR.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="StackMachine\XOR.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="StackMachineBuilder\BindXOR.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="StackMachine\NOT.h">
@@ -212,25 +191,19 @@
     <ClInclude Include="StackMachine\MUL.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="StackMachineBuilder\BindMUL.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="StackMachine\DIV.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="StackMachine\MOD.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="StackMachineBuilder\BindDIV.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="StackMachineBuilder\BindMOD.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="StackMachine.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="StackMachineBuilder.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="StackMachineBuilder\BindBinaryOperator.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>

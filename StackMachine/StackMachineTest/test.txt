@@ -1,12 +1,23 @@
-
-idc A=27,5; /* int A[]={27,5}; */
-idc B=27,3; /* int B[]={27,3}; */
-
-		imod(A,0,A,4); /* A[0]%=A[1]; */
-		idiv(B,0,B,4); /* b[0]/=B[1]; */
-
-		/*A[0]Ç∆B[0]Çï\é¶*/
-		iprint(A);
+		ild(gr2,2);
+LOOP	call(CHECK);
+		bcpaeq(gr5,false);
+		jmpb(SKIP,ax);
+		iprint(gr2);
 		cprint('\n');
-		iprint(B);
+SKIP	iinc(gr2);
+		icpaneq(gr2,100);
+		jmpb(LOOP,ax);
 		end;
+
+//ëfêîcheckä÷êî
+CHECK	ild(gr4,2);
+		bld(gr5,true);
+LOOPP	ild(gr3,gr2);
+		icpaeq(gr3,gr4);
+		jmpb(RET,ax);
+		imod(gr3,gr4);
+		icpaneq(gr3,0);
+		bld(gr5,ax);
+		iinc(gr4);
+		jmpb(LOOPP,gr5);
+RET		ret;

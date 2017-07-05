@@ -162,17 +162,12 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
     </ClCompile>
     <ClInclude Include="StackMachineBuilder.h" />
-    <ClInclude Include="StackMachineBuilder\BindAND.h" />
     <ClInclude Include="StackMachineBuilder\BindCALL.h" />
     <ClInclude Include="StackMachineBuilder\BindCAST.h" />
-    <ClInclude Include="StackMachineBuilder\BindDIV.h" />
-    <ClInclude Include="StackMachineBuilder\BindMOD.h" />
-    <ClInclude Include="StackMachineBuilder\BindMUL.h" />
+    <ClInclude Include="StackMachineBuilder\BindBinaryOperator.h" />
     <ClInclude Include="StackMachineBuilder\BindNOT.h" />
-    <ClInclude Include="StackMachineBuilder\BindOR.h" />
     <ClInclude Include="StackMachineBuilder\BindRET.h" />
     <ClInclude Include="StackMachineBuilder\BindSCAN.h" />
-    <ClInclude Include="StackMachineBuilder\BindXOR.h" />
     <ClInclude Include="StackMachine.h" />
     <ClInclude Include="StackMachineBuilder\TemplateInstantiation.h">
       <FileType>CppCode</FileType>
@@ -183,17 +178,13 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="StackMachineBuilder\BindADD.h" />
     <ClInclude Include="StackMachineBuilder\BindArges.h" />
     <ClInclude Include="StackMachineBuilder\BindCPAEQ.h" />
     <ClInclude Include="StackMachineBuilder\BindCPANEQ.h" />
-    <ClInclude Include="StackMachineBuilder\BindDREF.h" />
     <ClInclude Include="StackMachineBuilder\BindEND.h" />
     <ClInclude Include="StackMachineBuilder\BindINC.h" />
     <ClInclude Include="StackMachineBuilder\BindJMP.h" />
     <ClInclude Include="StackMachineBuilder\BindJMPB.h" />
-    <ClInclude Include="StackMachineBuilder\BindLD.h" />
-    <ClInclude Include="StackMachineBuilder\BindLDR.h" />
     <ClInclude Include="StackMachineBuilder\BindOrder.h" />
     <ClInclude Include="StackMachineBuilder\BindPOP.h" />
     <ClInclude Include="StackMachineBuilder\BindPRINT.h" />
