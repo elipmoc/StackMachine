@@ -2,15 +2,8 @@
 namespace VirtualMachineBuilder {
 	namespace phx = boost::phoenix;
 	namespace spt = boost::spirit;
-#include "BindADD.h"
-#include "BindMUL.h"
-#include "BindDIV.h"
-#include "BindMOD.h"
-#include "BindAND.h"
-#include "BindOR.h"
-#include "BindXOR.h"
+#include "BindBinaryOperator.h"
 #include "BindNOT.h"
-#include "BindLD.h"
 #include "BindINC.h"
 #include "BindPOP.h"
 #include "BindPUSH.h"
@@ -23,8 +16,6 @@ namespace VirtualMachineBuilder {
 #include "BindCPANEQ.h"
 #include "BindArges.h"
 #include "BindREF.h"
-#include "BindDREF.h"
-#include "BindLDR.h"
 #include "BindCAST.h"
 #include "BindEND.h"
 #include "BindCALL.h"
