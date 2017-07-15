@@ -1,23 +1,23 @@
 		ild(gr2,2);
-LOOP	call(CHECK);
+@LOOP	call(@CHECK);
 		bcpaeq(gr5,false);
-		jmpb(SKIP,ax);
+		jmpb(@SKIP,ax);
 		iprint(gr2);
 		cprint('\n');
-SKIP	iinc(gr2);
+@SKIP	iinc(gr2);
 		icpaneq(gr2,100);
-		jmpb(LOOP,ax);
+		jmpb(@LOOP,ax);
 		end;
 
 //ëfêîcheckä÷êî
-CHECK	ild(gr4,2);
+@CHECK	ild(gr4,2);
 		bld(gr5,true);
-LOOPP	ild(gr3,gr2);
+@LOOP2	ild(gr3,gr2);
 		icpaeq(gr3,gr4);
-		jmpb(RET,ax);
+		jmpb(@RET,ax);
 		imod(gr3,gr4);
 		icpaneq(gr3,0);
 		bld(gr5,ax);
 		iinc(gr4);
-		jmpb(LOOPP,gr5);
-RET		ret;
+		jmpb(@LOOP2,gr5);
+@RET	ret;

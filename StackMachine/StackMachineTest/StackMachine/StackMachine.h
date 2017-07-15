@@ -159,10 +159,12 @@ public:
 	};
 	void* operator[](std::string labelName) {
 		if (label.count(labelName) == 0) {
-			DS(4, labelName);
+			throw std::string("未定義のラベルが使用されました");
 		}
 		return label[labelName];
 	}
+	//指定のLabelが存在するか
+	bool ExistLabel(std::string labelName) { return label.count(labelName) == 0 ? false : true; }
 
 };
 

@@ -11,11 +11,14 @@ namespace VirtualMachineBuilder {
 	private:
 		StackMachine sm;
 		OrderVector ov;
+
 		auto AddOrder() {
 			return phx::bind([this](OrderBase* ob) {ov << ob; }, spt::_1);
 		}
-		auto AddOrderLabel() {
-			return phx::bind([this](std::string str) { ov << str; }, spt::_1);
+		auto AddOrderJumpLabel() {
+			return phx::bind(
+				[this](std::string str) {ov << str; },
+				spt::_1);
 		}
 		void InitRules();
 	public:
@@ -87,6 +90,8 @@ namespace VirtualMachineBuilder {
 		spt::qi::rule<Iterator, OrderBase*>Order;
 		//ラベル
 		spt::qi::rule<Iterator, std::string()>Label;
+		//ジャンプラベル(説明になってない)
+		spt::qi::rule<Iterator, std::string()>JumpLabel;
 		//ラベルが指すアドレス
 		spt::qi::rule<Iterator, void*>LabelAdr;
 		//レジスタのアドレス
@@ -142,7 +147,7 @@ namespace VirtualMachineBuilder {
 			*(
 			(zeroSpace >> DC >> zeroSpace >> lit(';'))
 				|
-				(zeroSpace >> -(Label[AddOrderLabel()] >> oneSpace) >> Order[AddOrder()] >> zeroSpace >> lit(';'))
+				(zeroSpace >> -(JumpLabel[AddOrderJumpLabel()] >> oneSpace) >> Order[AddOrder()] >> zeroSpace >> lit(';'))
 				|
 				(zeroSpace >> Comment)
 				);
@@ -162,15 +167,19 @@ namespace VirtualMachineBuilder {
 			(lit("idc") >> oneSpace >> Label >> zeroSpace >> lit('=') >> zeroSpace >> int_%',')[BindDCV::Make<int>(sm)] |
 			(lit("idc") >> oneSpace >> Label >> zeroSpace)[BindDS<int>::Make<int>(sm)] |
 			(lit("ddc") >> oneSpace >> Label >> zeroSpace >> lit('=') >> zeroSpace >> double_%',')[BindDCV::Make<double>(sm)] |
+			(lit("ddc") >> oneSpace >> Label >> zeroSpace)[BindDS<double>::Make<double>(sm)] |
 			(lit("bdc") >> oneSpace >> Label >> zeroSpace >> lit('=') >> zeroSpace >> bool_%',')[BindDCV::Make<bool>(sm)] |
+			(lit("bdc") >> oneSpace >> Label >> zeroSpace)[BindDS<bool>::Make<bool>(sm)] |
 			(lit("cdc") >> oneSpace >> Label >> zeroSpace >> lit('=') >> zeroSpace >> Char%',')[BindDCV::Make<char>(sm)] |
+			(lit("cdc") >> oneSpace >> Label >> zeroSpace)[BindDS<char>::Make<char>(sm)] |
 			(lit("cdc") >> oneSpace >> Label >> zeroSpace >> lit('=') >> zeroSpace >> String)[BindDCV::Make<char>(sm)];
-		Label = as_string[(+(char_('A', 'Z')))];
+		Label = as_string[(char_('A','Z')|char_('a','z'))>>(*(char_('A', 'Z')|char_('a','z')|char_('0','9')))];
+		JumpLabel = as_string[char_('@')>> (char_('A', 'Z')|char_('a','z')) >> (*(char_('A', 'Z')|char_('a','z')|char_('0','9')))];
 		String = lit('"') >> (+((NullChar | EndLineChar | char_ | wchar_) - '"')) >> lit('"');
 		Comment =
 			(lit("/*") >> *((char_ | wchar_) - "*/") >> lit("*/")) |
 			(lit("//") >> *((char_ | wchar_)));
-		LabelAdr = Label[_val = BindLabelAdr::Make(sm)];
+		LabelAdr = (Label|JumpLabel)[_val = BindLabelAdr::Make(sm)];
 		Register =
 			lit("ax")[_val = sm.GetAX()] |
 			lit("gr1")[_val = sm.GetGR(1)] |
@@ -185,7 +194,7 @@ namespace VirtualMachineBuilder {
 			lit("sp")[_val = sm.GetSP()] |
 			lit("bp")[_val = sm.GetBP()];
 
-		Adr = LabelAdr | Register | ValueAdr;
+		Adr = Register |  ValueAdr |LabelAdr;
 		Args1 = (Adr)[_val = BindArgs1::Make()];
 		Args2 = (Adr >> kanma >> Adr)[_val = BindArgs2::Make()];
 		Args3 = (Adr >> kanma >> Adr >> kanma >> Adr)[_val = BindArgs3::Make()];

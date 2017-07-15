@@ -80,6 +80,8 @@ namespace VirtualMachineBuilder {
 	struct BindLabelAdr
 	{
 		static void* _Make(StackMachine* sm, std::string label) {
+			if (label[0] == '@' && !sm->ExistLabel(label))
+				sm->DS(4, label);
 			return (*sm)[label];
 		}
 		static auto Make(StackMachine& sm) {
